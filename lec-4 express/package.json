@@ -1,0 +1,16 @@
+{
+  "name": "lec-4-express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "lec-4-express": "file:",
+    "nodemon": "^3.1.9"
+  }
+}
