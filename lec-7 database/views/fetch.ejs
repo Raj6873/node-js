@@ -24,6 +24,7 @@
                         <th>Name</th>
                         <th>Age</th>
                         <th>Email</th>
+                        <th>image</th>
                         <th>course</th>
                         <th colspan="2">Actions</th>
                     </tr>
@@ -34,9 +35,10 @@
                             <td><%= e.name %></td>
                             <td><%= e.age %></td>
                             <td><%= e.email %></td>
+                            <td><img src="<% e.imgae %>" ></td>
                             <td><%= e.course %></td>
-                            <td><a href="#" class="btn btn-success">edit</a></td>
-                            <td><a href="/delete?id=<%= i %>" class="btn btn-danger">Delete</a></td>
+                            <td><a href="/edit/id/=<%= i %>" class="btn btn-primary">edit</a></td>
+                            <td><a href="/deletestud/id/=<%= i %>" class="btn btn-danger">Delete</a></td>
                         </tr>
                     <% }) %>
                 </tbody>

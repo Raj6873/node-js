@@ -26,13 +26,22 @@ app.get('/fetch', (req, res) => {
     student.find({}).then((recoder) => {
         console.log("data is sucesfully");
         res.render('fetch', { recoder })
-        res.end(err)
+        // res.end(err)
     }).catch((err) => {
         console.log("error", err)
     })
 })
-app.get('/delete', (req, res) => {
-    console.log(req.query.id); 
+app.get('/deletestud/:id', (req, res) => {
+    const id = req.params.id;
+    console.log("Delete ID", id);
+
+    student.findByIdAndDelete(id).then(() => {
+        console.log("Deleted Succussfully..");
+    }).catch((err) => {
+        console.log("Error", err);
+    });
+
+    res.redirect('/fetch');
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
