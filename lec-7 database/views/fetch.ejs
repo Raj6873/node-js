@@ -30,20 +30,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% recoder.map((e,i) => { %>
+                    <% recoder.map((e,i)=> { %>
                         <tr>
-                            <td><%= e.name %></td>
-                            <td><%= e.age %></td>
-                            <td><%= e.email %></td>
-                            <td><img src="<% e.imgae %>" ></td>
-                            <td><%= e.course %></td>
-                            <td><a href="/edit/id/=<%= i %>" class="btn btn-primary">edit</a></td>
-                            <td><a href="/deletestud/id/=<%= i %>" class="btn btn-danger">Delete</a></td>
+                            <td>
+                                <%= e.name %>
+                            </td>
+                            <td>
+                                <%= e.age %>
+                            </td>
+                            <td>
+                                <%= e.email %>
+                            </td>
+                            <td><img src="<% e.imgae %>"></td>
+                            <td>
+                                <%= e.course %>
+                            </td>
+                            <td><a href="/edit/id/=<%= e.id %>" class="btn btn-primary">edit</a></td>
+                            <td><a href="/delet/?id=<%= e.id %>" class="btn btn-danger">Delete</a></td>
                         </tr>
-                    <% }) %>
+                        <% }) %>
                 </tbody>
             </table>
         </div>
+
+        <br>
+        <a href="/">Add Students</a>
+
     </div>
 
     <!-- Bootstrap JS -->

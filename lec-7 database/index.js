@@ -7,6 +7,7 @@ const port = 7000
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded());
+app.use
 
 app.get("/", (req, res) => {
     res.render("home");
@@ -31,17 +32,32 @@ app.get('/fetch', (req, res) => {
         console.log("error", err)
     })
 })
-app.get('/deletestud/:id', (req, res) => {
-    const id = req.params.id;
-    console.log("Delete ID", id);
 
-    student.findByIdAndDelete(id).then(() => {
-        console.log("Deleted Succussfully..");
+app.get('/delet', (req, res) => {
+    const id = req.query.id;
+    console.log(id);
+
+    student.findByIdAndDelete(id)
+        .then(() => {
+            console.log("Deleted successfully.");
+            res.redirect('/fetch'); 
+        })
+        .catch((err) => {
+            console.log("Error deleting student: ", err);
+        });
+});
+app.get("/edit", (req, res) => {
+    const id = req.query.id;
+
+    console.log("Update ID", id);
+
+    student.findById(id).then((record) => {
+        console.log(record);
+        res.render('edit', { record });
     }).catch((err) => {
-        console.log("Error", err);
-    });
-
-    res.redirect('/fetch');
+        res.redirect('/fetch');
+        console.log(err);
+    })
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
