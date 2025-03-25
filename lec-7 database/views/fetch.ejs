@@ -41,11 +41,11 @@
                             <td>
                                 <%= e.email %>
                             </td>
-                            <td><img src="<% e.imgae %>"></td>
+                            <!-- <td><img src="<% e.imgae %>"></td> -->
                             <td>
                                 <%= e.course %>
                             </td>
-                            <td><a href="/edit/id/=<%= e.id %>" class="btn btn-primary">edit</a></td>
+                            <td><a href="/edit/?id=<%= e.id %>" class="btn btn-primary">edit</a></td>
                             <td><a href="/delet/?id=<%= e.id %>" class="btn btn-danger">Delete</a></td>
                         </tr>
                         <% }) %>

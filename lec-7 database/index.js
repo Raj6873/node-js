@@ -7,7 +7,6 @@ const port = 7000
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded());
-app.use
 
 app.get("/", (req, res) => {
     res.render("home");
@@ -36,6 +35,7 @@ app.get('/fetch', (req, res) => {
 app.get('/delet', (req, res) => {
     const id = req.query.id;
     console.log(id);
+    
 
     student.findByIdAndDelete(id)
         .then(() => {
@@ -59,5 +59,21 @@ app.get("/edit", (req, res) => {
         console.log(err);
     })
 })
+
+app.post('/Update', (req, res) => {
+    const { id, name, age, course } = req.body;
+
+    student.findByIdAndUpdate(id, {
+        name: name,
+        age: age,
+        course: course,
+    }).then(() => {
+        console.log("Data is Updated");
+        res.redirect('/fetch');
+    }).catch((err) => {
+        console.log(err);
+    });
+})
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

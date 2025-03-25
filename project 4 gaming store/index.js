@@ -10,6 +10,10 @@ app.get('/', (req, res) =>{
     res.render('home')
 })
 
+app.post('/view',(req,res)=>{
+    res.redirect('view')
+})
+
 app.listen(port, (err)=>{
     if(err){
         console.log("err")

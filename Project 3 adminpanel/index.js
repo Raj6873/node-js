@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.get('/authentication-login', (req, res) => {
+app.get('/authentication-login ', (req, res) => {
     res.redirect('authentication-login');
 });
 
