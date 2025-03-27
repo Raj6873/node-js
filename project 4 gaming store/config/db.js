@@ -1,14 +1,13 @@
-const mongoose=require("mongoose");
+const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://127.0.0.1:27017/student");
+const URI = "mongodb://localhost:27017/School";
+mongoose.connect(URI);
 
-const db=mongoose.connection;
 
-db.once("open",(err)=>{
-    if(err){
-        console.log("error");
-        return false
-    }
-    console.log("Db is connected");
-})
-module.exports=db;
+const db = mongoose.connection;
+
+db.on('connected', () => console.log('DB is Connected..'));
+db.on('error', (err) => console.log('DB is not Connected..', err));
+db.on('disconnected', () => console.log('DB is Disconnected..'));
+
+module.exports = db;
