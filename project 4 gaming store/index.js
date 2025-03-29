@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('./config/db');
-const student = require('./models/students');
+const cars = require('./models/gaming-inventery');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -9,129 +9,148 @@ const app = express();
 const port = 2580;
 
 app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // MiddleWare
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const uploadPath = 'uploads/';
-        if (!fs.existsSync(uploadPath)) {
-            fs.mkdirSync(uploadPath);
-        }
-        cb(null, uploadPath);
+        cb(null, 'uploads/');
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname);
     }
 });
 
-const upload = multer({ 
-    storage: storage,
-    fileFilter: (req, file, cb) => {
-        const allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (!allowedFileTypes.includes(file.mimetype)) {
-            return cb(new Error('Invalid file type. Only images are allowed.'));
-        }
-        cb(null, true);
-    }
-});
+const upload = multer({ storage: storage }); // File Middleware
 
 app.get('/', (req, res) => {
-    res.render('home');
-});
+    res.render('form');
+})
 
-app.post('/studOperation', upload.single('image'), async (req, res) => {
-    const { id, name, age, course } = req.body;
+// Insert
+app.post('/game-inventory', upload.single('image'), async (req, res) => {
+
+    const { id, brand, model, price, color } = req.body;
+
     console.log(req.file);
 
     let image = "";
+
     if (req.file) {
         image = req.file.path;
     }
 
     if (id) {
-        const data = await student.findById(id);
+        // Edit
+
+        const data = await cars.findById(id);
 
         if (image) {
             console.log("New Image");
-            if (fs.existsSync(data.image)) {
-                fs.unlinkSync(data.image);
-            }
 
-            student.findByIdAndUpdate(id, { name, age, course, image })
-                .then(() => {
-                    console.log("Data is Updated");
-                    res.redirect('/fetch');
-                })
-                .catch(err => console.log(err));
+            fs.unlinkSync(data.image)
+
+            game.findByIdAndUpdate(id, {
+               game_name,
+               game_gener,
+               game_date,
+               image: data.image,
+            }).then(() => {
+                console.log("Data is Updated");
+                res.redirect('/fetch');
+            }).catch((err) => {
+                console.log(err);
+            });
+
         } else {
             console.log("Old Image");
-            student.findByIdAndUpdate(id, { name, gener, date, image: data.image })
-                .then(() => {
-                    console.log("Data is Updated");
-                    res.redirect('/fetch');
-                })
-                .catch(err => console.log(err));
+
+            game.findByIdAndUpdate(id, {
+                game_name,
+                game_gener,
+                game_date,
+                image: data.image,
+            }).then(() => {
+                console.log("Data is Updated");
+                res.redirect('/fetch');
+            }).catch((err) => {
+                console.log(err);
+            });
         }
+
     } else {
         // Insert
-        student.create({ name, gener, date, image })
-            .then(() => {
-                console.log("Data inserted...");
-                res.redirect('/');
-            })
-            .catch(err => console.log("Error ", err));
-    }
-});
-
-app.get('/fetch', (req, res) => {
-    student.find({})
-        .then(records => {
-            res.render('table', { records });
+        game.create({
+            game_name,
+                game_gener,
+                game_date,
+                image: data.image,
+        }).then(() => {
+            console.log("Data inserted...");
+            res.redirect('/');
+        }).catch((err) => {
+            console.log("Error ", err);
         })
-        .catch(err => {
-            console.log("Error", err);
-            res.send(err);
-        });
-});
+    }
+    res.redirect('/fetch');
+})
 
-app.get('/deleteStud/:id', async (req, res) => {
+// Fetch
+app.get('/fetch', (req, res) => {
+
+    game.find({}).then((records) => {
+        // console.log(records);
+        res.render('table', { records });
+
+
+    }).catch((err) => {
+        console.log("Error", err);
+        res.send(err);
+    });
+})
+
+// Delete
+app.get('/delete/:id', async (req, res) => {
+    // const id = req.query.id;
     const id = req.params.id;
     console.log("Delete ID", id);
 
-    try {
-        const data = await student.findById(id);
-        if (data.image && fs.existsSync(data.image)) {
-            fs.unlinkSync(data.image);
-            console.log("Image deleted successfully");
-        }
+    const data = await cars.findById(id);
 
-        await student.findByIdAndDelete(id);
-        console.log("Deleted Successfully");
-        res.redirect('/fetch');
-    } catch (err) {
+    console.log(data);
+
+    fs.unlinkSync(data.image);
+
+    cars.findByIdAndDelete(id).then(() => {
+        console.log("Deleted Succussfully..");
+    }).catch((err) => {
         console.log("Error", err);
-        res.status(500).send('Error deleting student');
-    }
-});
+    });
 
-app.get("/editStud", (req, res) => {
+    res.redirect('/fetch');
+})
+
+// Edit Route 
+app.get("/edit", (req, res) => {
     const id = req.query.id;
-    if (!id) {
-        return res.redirect('/fetch');
-    }
 
-    
     console.log("Update ID", id);
 
-    student.findById(id)
-        .then((record) => {
-            res.render('edit', { record });
-        })
-        .catch((err) => {
-            res.redirect('/fetch');
-            console.log(err);
-        });
-});
 
-app.listen(port, () => console.log('Server started...'));
+    cars.findById(id).then((record) => {
+        console.log(record);
+        res.render('edit', { record });
+    }).catch((err) => {
+        res.redirect('/fetch');
+        console.log(err);
+    })
+})
+
+
+app.listen(port, (err) =>{
+    if(err){
+        console.log("server is mot connected");
+    }
+    console.log("server is  connected",port);
+
+});

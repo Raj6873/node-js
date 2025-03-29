@@ -1,26 +1,26 @@
 const mongoose = require('mongoose');
 
 // MongoDB Schema
-const studentSchema = mongoose.Schema({
+const gameSchema = mongoose.Schema({
     game_name: {
         type: String,
         required: true,
     },
     game_genner: {
-        type: Number,
+        type: String,
         required: true,
     },
     game_date: {
-        type: String,
+        type: Number,
         required: true,
     },
     game_image: {
         type: String,
         required: true,
-    }
+    },
 })
 
 // MongoDB Model
-const student = mongoose.model('students', studentSchema);
+const game = mongoose.model('gaming-invetery', gameSchema);
 
-module.exports = student;
+module.exports = game;

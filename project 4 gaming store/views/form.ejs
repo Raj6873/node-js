@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Inventory Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            width: 100%;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 6px;
+        }
+
+        .form-check-input {
+            margin-right: 5px;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .text-center a {
+            color: #007bff;
+            font-weight: 500;
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card p-4 col-md-6 col-lg-5">
+            <h2 class="text-center text-primary mb-4">Game Inventory Form</h2>
+            <form method="post" action="/car-inventory" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="game_name">Game Name:</label>
+                    <input type="text" class="form-control" id="game_name" name="game_name" placeholder="Enter your game name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="game_genre">Game Genre:</label>
+                    <input type="text" class="form-control" id="game_genre" name="game_genre" placeholder="Enter your game genre" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="game_date">Release Date:</label>
+                    <input type="date" class="form-control" id="game_date" name="game_date" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="game_image">Game Image:</label>
+                    <input type="file" class="form-control" id="game_image" name="image" accept="image/*">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <br>
+            <div class="text-center">
+                <a href="/fetch" class="text-decoration-none">View Game Inventory</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -2,120 +2,77 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outdoor Adventure</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Car Showroom Inventory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
+        .card:hover {
+            transform: scale(1.05);
         }
 
-        header {
-            background-color: #333;
+        .badge-green {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #28a745;
             color: white;
-            padding: 20px 40px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .details {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: space-around;
+            font-size: 14px;
+            color: gray;
         }
 
-        .logo {
-            text-decoration: none;
+        .details i {
+            margin-right: 5px;
         }
-
-        .logo h2 {
-            margin: 0;
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        .logo p {
-            margin: 0;
-            font-size: 1.2rem;
-            font-weight: 400;
-        }
-
-        nav {
-            margin-top: 10px;
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: flex-start;
-            list-style-type: none;
-            gap: 30px;
-        }
-
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 10px 15px;
-            margin-left: 10px;
-            text-justify: ;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            background-color: #555;
-            border-radius: 5px;
-            transform: scale(1.1);
-        }
-
-        nav ul li .batton {
-            background-color: #e84a5f;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        nav ul li .batton:hover {
-            background-color: #d23c4a;
-            transform: scale(1.1);
-        }
-
     </style>
 </head>
 
 <body>
+    
 
-    <header>
-        <a href="javascript:void(0)" class="logo">
-            <h2>GEARNIX</h2>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="javascript:void(0)">Home</a></li>
-                <li><a href="javascript:void(0)">Shop</a></li>
-                <li><a href="javascript:void(0)">Products</a></li>
-                <li><a href="javascript:void(0)">Projects</a></li>
-                <li><a href="javascript:void(0)">Projects</a></li>
-                <li><a href="javascript:void(0)">Blog</a></li>
-                <li><a href="javascript:void(0)" class="batton">TAKE ACTION</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container my-4">
+        <h1 class="text-center mb-5">Car Showroom Inventory</h1>
+        
+        <div class="row g-4">
+            <% records.map((e) => { 
+                const { id, brand, model, price, color, image} = e; %>
+                <div class="col-md-3">
+                    <div class="card shadow-lg position-relative">
+                        <span class="badge-green">Great Price</span>
+                        <img src="<%= image %>" class="card-img-top" alt="Car Image" style="height: 200px; object-fit: cover;">
+                        <div class="card-body bg-dark text-white rounded-bottom">
+                            <h5 class="card-title"><%= brand %> - <%= model %></h5>
+                            <p class="card-text"><strong>Price:</strong> ₹<%= price %></p>
+                            <p class="card-text"><strong>Color:</strong> <%= color %></p>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="/edit?id=<%= id %>" class="btn btn-warning">Edit</a>
+                                <a href="/delete/<%= id %>" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary">Add Car</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
