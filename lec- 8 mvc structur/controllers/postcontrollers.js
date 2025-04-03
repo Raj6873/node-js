@@ -10,7 +10,6 @@ const contactPage = (req, res) => {
     res.render('contact');
 }
 
-
 const homePage = (req, res) => {
     res.render('home');
 }

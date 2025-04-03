@@ -40,7 +40,6 @@ app.get("/insertdata", (req, res) => {
     res.render("form")
 })
 
-
 app.post("/studentdata", (req, res) => {
     console.log("req for data", req.body);
 

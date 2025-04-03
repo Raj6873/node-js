@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Album</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../fonts/remixicon-font/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+                    background: linear-gradient(90deg, rgba(49, 20, 64, 0.5), rgba(205, 62, 133, 0.5));
+        }
+        .py {
+            padding-top: 20px;
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            font-weight: bold;
+            margin-left: 3%;
+        }
+        .nav-link {
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .banner-section {
+            width: 100%;
+            height: 100vh;
+            background: url('images/banner-image.jpg') !important;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .banner-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 10px;
+        }
+        .banner-section p {
+            font-size: 1.2rem;
+            margin: 25px;
+        }
+        .banner-section .btn {
+            border-radius: 7px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            padding: 10px 20px;
+        }
+        .banner-content h5 {
+            color: rgba(205, 62, 133, 0.8);
+            font-weight: 700;
+        }
+        .banner-content h2 {
+            font-weight: 800;
+        }
+        .music-player {
+            background: #222;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .music-cover {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+        audio {
+            width: 100%;
+            max-width: 300px;
+        }
+        .icons i {
+            margin: 0 5px;
+        }
+        .login-option {
+            margin-right: 25px;
+        }
+        .login-option span {
+            margin: 0 5px;
+        }
+        .btn-up {
+            background-color: #667eea;
+            color: white;
+            padding: 7px 15px;
+            border-radius: 5px;
+        }
+        .btn-up:hover {
+            background-color: #5667d3;
+        }
+        .btn-del {
+            background-color: rgb(205, 62, 133);
+            color: white;
+            padding: 7px 15px;
+            border-radius: 5px;
+        }
+        .btn-del:hover {
+            background-color: rgb(205, 62, 133);
+        }
+        .back-btn {
+            color: white;
+            background-color: #764ba2;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            border: none;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .artist-section {
+            padding: 50px 0;
+            text-align: center;
+            color: white;
+        }
+        .artist-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: rgb(205, 62, 133);
+            margin-bottom: 10px;
+        }
+        .artist-description {
+            font-size: 1rem;
+            color: black;
+            margin-bottom: 30px;
+        }
+        .artist-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .artist-card {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .artist-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+        .artist-card:hover img {
+            transform: scale(1.1);
+        }
+        .artist-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            mix-blend-mode: multiply;
+        }
+        .artist-card.red::after {
+            background: rgba(255, 0, 0, 0.5);
+        }
+        .artist-card.orange::after {
+            background: rgba(255, 165, 0, 0.5);
+        }
+        .artist-card.purple::after {
+            background: rgba(128, 0, 128, 0.5);
+        }
+        .artist-card.green::after {
+            background: rgba(0, 128, 0, 0.5);
+        }
+        .artist-card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, rgba(255, 0, 0, 0.7), rgba(255, 165, 0, 0.7));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .artist-card:hover .overlay {
+            opacity: 1;
+        }
+        .artist-card .overlay h3 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .album-card {
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header
+        style="background: linear-gradient(90deg, rgba(148, 43, 109, 0.8), rgba(205, 62, 133, 0.8));padding: 10px 0; display: flex; justify-content: space-between;">
+        <div class="icons" style="color: #fff;font-size: 18px;margin-left: 5%;">
+            <i class="ri-facebook-fill"></i>
+            <i class="ri-twitter-fill"></i>
+            <i class="ri-pinterest-fill"></i>
+            <i class="ri-instagram-fill"></i>
+        </div>
+        <div style="color: #fff;" class="login-option">
+            <span>Sign Up</span> |
+            <span>Sign In</span> |
+            <span>Cart</span>
+
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark px-4">
+        <a class="navbar-brand text-white" href="#">ℳilando</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-white" href="#">HOME</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">ARTIST</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">ALBUM</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">EVENTS</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">TABS</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">BLOG</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">GALLERT</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">SHOP</a></li>
+            </ul>
+
+        </div>
+    </nav>
+    <!-- banner  -->
+    <div class="banner-section py">
+        <div class="container">
+            <div class="banner-item" style="display: flex;">
+                <div class="banner-img">
+                    <img src="../images/img-1.png" alt="b-img" width="50%">
+                </div>
+                <div class="banner-content">
+                    <h5>Artist Feel You</h5>
+                    <h2>Happy Rhythm of Life</h2>
+                    <p>There are many variations of passages of Lorem Ipsum available but the majority have suffered
+                        alteration.</p>
+                    <a href="/form" class="btn  ms-3">Music Store</a>
+                    <a href="#card" class="btn  ms-3">Show Album</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- artist  -->
+    <div class="artist-section">
+        <div class="container text-center">
+            <h2 class="artist-title">ARTIST LINEUP</h2>
+            <p>There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some injected humour.</p>
+            <div class="artist-grid">
+                <div class="artist-card">
+                    <img src="../images/a1.jpg" alt="Artist 1">
+                    <div class="overlay">
+                        <h3>James Hetfield</h3>
+                        <p>Band: Metallica</p>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <img src="../images/a2.jpg" alt="Artist 2">
+                    <div class="overlay">
+                        <h3>Adele</h3>
+                        <p>Band: Solo Artist</p>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <img src="../images/a3.jpg" alt="Artist 1">
+                    <div class="overlay">
+                        <h3>James Hetfield</h3>
+                        <p>Band: Metallica</p>
+                    </div>
+                </div>
+                <div class="artist-card">
+                    <img src="../images/a4.jpg" alt="Artist 2">
+                    <div class="overlay">
+                        <h3>Adele</h3>
+                        <p>Band: Solo Artist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- card  -->
+    <div class="container mt-5" id="card">
+        <h2 class="text-center mb-4">🎵 Music Albums</h2>
+        <div class="album row">
+            <% record.forEach((data)=> { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card album-card">
+                        <img src="<%= data.album_cover%>" class="card-img-top" alt="Album">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= data.album_name %>
+                            </h5>
+                            <ul class="album-info">
+                                <li><strong>🎤 Artist:</strong>
+                                    <%= data.artist_name %>
+                                </li>
+                                <li><strong>📅 Release Year:</strong>
+                                    <%= data.release_year %>
+                                </li>
+                                <li><strong>🎼 Genre:</strong>
+                                    <%= data.genre %>
+                                </li>
+                            </ul>
+                            <a href="/update/<%= data._id %>" class="btn btn-up"> Update</a>
+                            <a href="/delete/<%= data._id %>" class="btn btn-del"> Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
