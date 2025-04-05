@@ -3,11 +3,11 @@ const connectDb = require("./config/db");
 const bodyParser = require('body-parser');
 const Movie = require('./models/movie'); 
 const path = require('path');
+const port = 9000
 
 const app = express();
 
-// Connect to MongoDB
-connectDb();
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
