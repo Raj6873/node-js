@@ -49,7 +49,7 @@
   <div class="container-box">
     <div class="right-panel">
       <h3 class="mb-4 text-center">Edit Gaming Details</h3>
-      <form method="post" action="/edit/<%= record.id %>" enctype="multipart/form-data">
+      <form method="POST" action="/edit/<%= record.id %>" enctype="multipart/form-data">
         <div class="mb-3">
           <label class="form-label">Game Name</label>
           <input type="text" class="form-control" name="game_name" placeholder="Enter Game Name" value="<%= record.game_name %>">
@@ -70,7 +70,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Game Cover</label>
-          <input type="file" class="form-control" name="game_cover">
+          <input type="file" class="form-control" name="game_image">
           <% if (record.game_cover) { %>
             <img src="../<%= record.game_cover %>" width="80" alt="Game Cover">
           <% } %>

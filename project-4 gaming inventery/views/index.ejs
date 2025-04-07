@@ -222,7 +222,22 @@
                 <img src="../images/pubgi.jpeg" class="card-img-top" alt="Featured Game">
             </div>
         </div>
+
+        <div class="container row py-5">
+            <div class="card mx-auto" style="width: 18rem;">
+                <img src="../images/Free-Fire.jpeg" class="card-img-top" alt="Featured Game">
+            </div>
+
+            <div class="card mx-auto" style="width: 18rem;">
+                <img src="../images/gaming1.jpeg" class="card-img-top" alt="Featured Game">
+            </div>
+
+            <div class="card mx-auto" style="width: 18rem;">
+                <img src="../images/pubgi.jpeg" class="card-img-top" alt="Featured Game">
+            </div>
+        </div>
     </div>
+    
 
     <!-- Game Cards -->
     <div class="container mt-5" id="card">
@@ -231,13 +246,12 @@
             <% record.forEach((data) => { %>
                 <div class="col-md-4 mb-4">
                     <div class="card album-card">
-                        <img src="../<%= data.game_cover %>" class="card-img-top" alt="Game Cover">
+                        <img src="<%= data.game_image %>" class="card-img-top" alt="Game Cover">
                         <div class="card-body">
                             <h5 class="card-title"><%= data.game_name %></h5>
                             <ul class="album-info">
-                                <li><strong>Genre:</strong> <%= data.genre %></li>
-                                <li><strong>Release:</strong> <%= data.game_image %></li>
-                                <li><strong>Type:</strong> <%= data.game_gener %></li>
+                                <li><strong>Genre:</strong> <%= data.game_gener %></li>
+                                <li><strong>Release:</strong> <%= data.game_date %></li>
                             </ul>
                             <a href="/update/<%= data._id %>" class="btn btn-up">Update</a>
                             <a href="/delete/<%= data._id %>" class="btn btn-del">Delete</a>

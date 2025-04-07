@@ -6,8 +6,7 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    game_gener:
-    {
+    game_gener:{
         type: String,
         required: true
     },
@@ -19,9 +18,5 @@ const gameSchema = new mongoose.Schema({
         type : String,
         required : true, 
     },
-    game_cover : {
-        type : String,
-        required : true ,
-    }
 });
-module.exports = mongoose.model('Album', gameSchema);
+module.exports = mongoose.model('game', gameSchema);

@@ -1,10 +1,10 @@
 const { unlink, unlinkSync } = require('fs');
-const album = require('../models/gamingmodel');
+const game = require('../models/gamingmodel');
 const path = require('path');
 
 //home page
 const homepage =async (req, res) => {
-        const record = await album.find();
+        const record = await game.find();
         res.render("index", { record }); 
 };
 
@@ -13,65 +13,70 @@ const RenderForm = async (req, res) => {
     res.render("form"); 
 };
 
-// insert album
-const insertalbum = async (req, res) => {
+// insert game
+const insertgame = async (req, res) => {
     try {
         console.log("Insert is loading...");
         console.log("Data Received:", req.body);
         console.log(req.file);
 
+        // Convert date to number if your schema expects a Number
+        req.body.game_date = new Date(req.body.game_date).getTime();
+
         if (req.file) {
-            req.body.game_cover = req.file.path;
+            req.body.game_image = req.file.path;
         }
 
-        await album.create(req.body);
+        await game.create(req.body);
         console.log("Data stored successfully!");
         res.redirect('/');
     } catch (error) {
-        console.error("Error inserting album:", error);
+        console.error("Error inserting game:", error);
+        res.status(500).send("Something went wrong!");
     }
 };
 
-//  delete logic
-const DeleteAlbum = async (req, res) => {
-    const { id } = req.params;
-    const record = await album.findById(id);
 
-    unlinkSync(record.game_cover);
-    await album.findByIdAndDelete(id);
+//  delete logic
+const Deletegame = async (req, res) => {
+    const { id } = req.params;
+    const record = await game.findById(id);
+
+    unlinkSync(record.game_image);
+    await game.findByIdAndDelete(id);
 
     res.redirect('/');
 };
 
 //update logic
-const UpdateAlbum = async (req, res) => {
+const Updategame = async (req, res) => {
     const id = req.params.id;
     console.log(id);
 
-    const record = await album.findById(id);
+    const record = await game.findById(id);
     res.render('edit', { record });
 }
 
 //edit logic
-const EditAlbum = async (req, res) => { 
+const Editgame = async (req, res) => { 
     const id = req.params.id;
 
     console.log(req.body);
 
 
-    const record = await album.findById(id);
+    const record = await game.findById(id);
 
     if(req.file) {
-        unlinkSync(record.game_cover);
+        unlinkSync(record.game_image);
         req.body.game_cover = req.file.path;
-        await album.findByIdAndUpdate(id, req.body);
+        await game.findByIdAndUpdate(id, req.body);
     } else {
-        req.body.album_cover = record.album_cover;
-        await album.findByIdAndUpdate(id, req.body);
+        req.body.game_cover = record.game_cover;
+        await game.findByIdAndUpdate(id, req.body);
     }
     
     res.redirect('/');
 }
 module.exports = {
-    homepage, RenderForm, insertalbum, DeleteAlbum, UpdateAlbum,EditAlbum
+    homepage, RenderForm, insertgame, Deletegame, Updategame,Editgame
 };    

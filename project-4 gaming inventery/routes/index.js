@@ -18,9 +18,9 @@ console.log("Routing...");
 
 route.get('/', controllers.homepage);
 route.get('/form', controllers.RenderForm);
-route.post('/insert', upload.single('album_cover'), controllers.insertalbum);
-route.get('/delete/:id', controllers.DeleteAlbum)
-route.post('/edit/:id',upload.single('album_cover'), controllers.EditAlbum);
-route.get('/update/:id', controllers.UpdateAlbum)
+route.post('/insert', upload.single('game_image'), controllers.insertgame);
+route.get('/delete/:id', controllers.Deletegame)
+route.post('/edit/:id',upload.single('game_image'), controllers.Editgame);
+route.get('/update/:id', controllers.Updategame)
 
 module.exports = route;
