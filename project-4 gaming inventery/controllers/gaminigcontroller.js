@@ -1,6 +1,7 @@
 const { unlink, unlinkSync } = require('fs');
 const game = require('../models/gamingmodel');
 const path = require('path');
+const fs = require('fs');
 
 //home page
 const homepage =async (req, res) => {
@@ -20,7 +21,6 @@ const insertgame = async (req, res) => {
         console.log("Data Received:", req.body);
         console.log(req.file);
 
-        // Convert date to number if your schema expects a Number
         req.body.game_date = new Date(req.body.game_date).getTime();
 
         if (req.file) {
@@ -37,46 +37,76 @@ const insertgame = async (req, res) => {
 };
 
 
-//  delete logic
+// //  delete logic
 const Deletegame = async (req, res) => {
-    const { id } = req.params;
-    const record = await game.findById(id);
+    try {
+        const { id } = req.params;
+        const record = await game.findById(id);
 
-    unlinkSync(record.game_image);
-    await game.findByIdAndDelete(id);
+        if (record && record.game_image) {
+            try {
+                fs.unlinkSync(record.game_image);
+            } catch (err) {
+                console.error(`Error deleting file: ${err.message}`);
+            }
+        }
 
-    res.redirect('/');
+        await game.findByIdAndDelete(id);
+        res.redirect('/');
+    } catch (err) {
+        console.error(`Error deleting game: ${err.message}`);
+    }
 };
+
 
 //update logic
 const Updategame = async (req, res) => {
-    const id = req.params.id;
-    console.log(id);
+    try {
+        const id = req.params.id;
+        console.log(id);
 
-    const record = await game.findById(id);
-    res.render('edit', { record });
-}
+        const record = await game.findById(id);
+        if (!record) {
+            return res.status(404).send('Game not found');
+        }
+
+        res.render('edit', { record });
+    } catch (error) {
+        console.error('Error fetching game:', error);
+    }
+};
+
 
 //edit logic
-const Editgame = async (req, res) => { 
-    const id = req.params.id;
 
-    console.log(req.body);
+const Editgame = async (req, res) => {
+    try {
+        const id = req.params.id;
+        console.log(req.body);
 
+        const record = await game.findById(id);
+        if (!record) {
+            return res.status(404).send('Game not found');
+        }
 
-    const record = await game.findById(id);
+        if (req.file) {
+            try {
+                unlinkSync(record.game_image); // Delete old image
+            } catch (err) {
+                console.error('Error deleting the old image:', err);
+            }
+            req.body.game_image = req.file.path;
+        } else {
+            req.body.game_image = record.game_image;
+        }
 
-    if(req.file) {
-        unlinkSync(record.game_image);
-        req.body.game_cover = req.file.path;
         await game.findByIdAndUpdate(id, req.body);
-    } else {
-        req.body.game_cover = record.game_cover;
-        await game.findByIdAndUpdate(id, req.body);
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error updating game:', error);
     }
-    
-    res.redirect('/');
-}
+};
+
 module.exports = {
     homepage, RenderForm, insertgame, Deletegame, Updategame,Editgame
 };    
