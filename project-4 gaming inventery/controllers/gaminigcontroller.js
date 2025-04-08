@@ -82,31 +82,38 @@ const Updategame = async (req, res) => {
 const Editgame = async (req, res) => {
     try {
         const id = req.params.id;
-        console.log(req.body);
+        console.log('Request Body:', req.body);
 
         const record = await game.findById(id);
         if (!record) {
             return res.status(404).send('Game not found');
         }
 
-        if (req.file) {
+        // Handle image update
+        if (req.file && req.file.path) {
             try {
-                unlinkSync(record.game_image); // Delete old image
+                if (record.game_image) {
+                    unlinkSync(record.game_image); // Delete old image
+                }
             } catch (err) {
                 console.error('Error deleting the old image:', err);
             }
             req.body.game_image = req.file.path;
         } else {
-            req.body.game_image = record.game_image;
+            req.body.game_image = record.game_image; // Retain old image if no new file
         }
 
-        await game.findByIdAndUpdate(id, req.body);
+        const updated = await game.findByIdAndUpdate(id, req.body, { new: true });
+        if (!updated) {
+            return res.status(500).send('Failed to update game');
+        }
+
         res.redirect('/');
     } catch (error) {
         console.error('Error updating game:', error);
+        res.status(500).send('An error occurred while updating the game');
     }
 };
-
 module.exports = {
     homepage, RenderForm, insertgame, Deletegame, Updategame,Editgame
 };    
