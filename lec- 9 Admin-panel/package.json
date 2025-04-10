@@ -12,6 +12,7 @@
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "lec--9-admin-panel": "file:",
+    "mongoose": "^8.13.2",
     "nodemon": "^3.1.9"
   }
 }
