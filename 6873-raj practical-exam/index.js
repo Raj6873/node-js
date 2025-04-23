@@ -1,20 +1,18 @@
 const express = require('express');
 const db = require('./config/db');
-const multer =require('multer'); 
-const app = express();
 const path = require('path');
-const port = 8000;
+const app = express();
+const port = 2580;
 
 app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 
-
-app.use('/',require('./routes/InventoryRotes'));
-
+app.use('/', require('./routes/index'));
 app.listen(port, (err) => {
-    if (err) {
-        console.log("Server is not started...", err);
-        return;
-    }
-    console.log(`Server is started on port ${port}`);
-});
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log("server is Running on port ", +port);
+  }
+})

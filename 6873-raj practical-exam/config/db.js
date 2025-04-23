@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
-const mongoUrl = ('mongodb://localhost:27017/Inventory');
+const  url = 'mongodb://localhost:27017/Inventorymangemnet';
+mongoose.connect(url);
 const db = mongoose.connection;
-mongoose.connect(mongoUrl);
-db.on('connected', () => console.log('DataBase is Connected..'));
-db.on('error', (err) => console.log('DB is  not Connected..', err));
-db.on('disconnected', () => console.log('DB is Disconnected..'));
+db.on('connected', () => {
+    console.log('Database connected successfully...');
+});
+db.on('error', (err) => {
+    console.log('Database connection error:', err);
+});
+db.on('disconnected', () => {
+    console.log('Database disconnected...');
+});
 module.exports = db;

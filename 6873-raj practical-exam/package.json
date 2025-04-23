@@ -1,14 +1,15 @@
 {
-  "name": "6873-raj-practical-exam",
+  "name": "6574-nency",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "6574-nency": "file:",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "mongoose": "^8.13.2",
