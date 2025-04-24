@@ -10,11 +10,11 @@ const HomePage = async (req, res) => {
 
 // addProduct page
 const ProductForm = async (req, res) => {
-    res.render('addProduct');
+    res.render('add');
 }
 
 const InventoryProduct = async (req, res) => {
-    console.log('addProduct ', req.body);
+    console.log('addP', req.body);
     try {
         req.body.InventoryImage = req.file.path;
 

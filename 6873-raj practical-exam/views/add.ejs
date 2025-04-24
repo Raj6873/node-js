@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: auto;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .form-label {
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-control {
+      border-radius: 10px;
+    }
+
+    .form-control:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+    }
+
+    .btn-primary {
+      border-radius: 10px;
+      padding: 10px 30px;
+      font-weight: 500;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      background-color: #0b5ed7;
+    }
+
+    .text-center {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container vh-100 d-flex justify-content-center align-items-center">
+    <form action="/InventoryProduct" method="post" enctype="multipart/form-data" class="form-container w-100">
+      <h2>Inventory Management System</h2>
+
+      <div class="mb-3">
+        <label for="InventoryName" class="form-label">Inventory Name</label>
+        <input type="text" class="form-control" id="InventoryName" name="InventoryName" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="InventoryPrice" class="form-label">Product Price</label>
+        <input type="number" class="form-control" id="InventoryPrice" name="InventoryPrice" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="InventoryCategory" class="form-label">Inventory Category</label>
+        <input type="text" class="form-control" id="InventoryCategory" name="InventoryCategory" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="InventoryDesc" class="form-label">Inventory Description</label>
+        <input type="text" class="form-control" id="InventoryDesc" name="InventoryDesc" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="InventoryImage" class="form-label">Inventory Image</label>
+        <input type="file" class="form-control" id="InventoryImage" name="InventoryImage" required>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

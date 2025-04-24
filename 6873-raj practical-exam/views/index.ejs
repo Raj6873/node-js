@@ -25,7 +25,7 @@
     }
 
     .card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-7px);
     }
 
     .card img {
@@ -84,11 +84,7 @@
 
 <body>
   <div class="container mt-5">
-    <div class="text-center header">
-      <a href="/formPage" class="btn btn-primary mb-4">+ Add New Inventory</a>
-      <h2 class="fw-bold">Inventory</h2>
-    </div>
-
+  
     <div class="row justify-content-center inventory-grid">
       <% records.map((data) => { %>
         <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
@@ -116,3 +112,7 @@
 </body>
 
 </html>
+<br>
+<div class="text-center header">
+  <a href="/formPage" class="btn btn-primary mb-4">+ Add New Inventory</a>
+</div>
