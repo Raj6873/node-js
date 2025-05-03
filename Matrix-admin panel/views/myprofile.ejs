@@ -1,0 +1,37 @@
+<%- include('Header') %>
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Tables</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">Static Table</h5>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name : <%=AdminDataa.name%></th>
+                                
+                                <th scope="col">image : <img src="<%= AdminDataa.image %> " alt="" height="50"></th>
+                            </tr>
+                        </thead>
+                       
+                    </table>
+                </div>
+            </div>
+        </div>
+        <%- include('Footer') %>

@@ -1,0 +1,63 @@
+<%- include('Header') %>
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Tables</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title m-b-0">Static Table</h5>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Hobby</th>
+                                <th scope="col">City</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Massage</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% AllAdminRecords.map((v,i)=>{ %>
+                                <tr>
+                                    <td scope="col"><%= v.name %></td>
+                                    <td scope="col"><%= v.email %></td>
+                                    <td scope="col"><%= v.gender %></td>
+                                    <td scope="col"><%= v.hobby %></td>
+                                    <td scope="col"><%= v.city %></td>
+                                    <td scope="col"><img src="<%= v.image %>" alt="AdminImage" height="100"></td>
+                                    <td scope="col"><%= v.massage %></td>
+                                    <td scope="col">
+                                        <a href="/deleteAdmin/<%= v.id %>">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                        ||
+                                        <a href="/updateAdmin/<%= v.id %>">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <%- include('Footer') %>
