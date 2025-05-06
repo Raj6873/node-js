@@ -5,20 +5,20 @@ const Admin = require('../models/AdminModel');
 const nodemailer=require("nodemailer")
 
 module.exports.SignIn = async (req, res) => {
-    // try {
+    try {
 
-    //     if(req.cookies.AdminData){
-    //         return res.redirect('/dashboard')
-    //     }
-    //     else{
-    //         res.render('SignIn')
-    //     }
+         if(req.cookies.AdminData){
+            return res.redirect('/dashboard')
+        }
+        else{
+         res.render('SignIn')
+        }
 
 
-    // } catch (err) {
-    //     console.log(err);
-    //     res.redirect('back')
-    // }
+     } catch (err) {
+         console.log(err);
+         res.redirect('back')
+     }
 }
 
 module.exports.CheckSignIn = async (req, res) => {
