@@ -3,17 +3,17 @@ const port = 8080;
 const path = require('path')
 const app = express();
 const db = require('./config/db')
-const session =  require('express-session');
-const passport = require ('passport');
-const localstrategy = require ('./config/password-local-strategy');
+const session = require('express-session');
+const passport = require('passport');
+const localstrategy = require('./config/password-local-strategy');
 
-app.use (session({
-    name : "hardik",
-    secret : 'hardikey',
+app.use(session({
+    name: "hardik",
+    secret: 'hardikey',
     resave: false,
-    saveUninitialized:false,
-    cookie:{
-        maxAge:1000*60*60
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60
     }
 }))
 app.use(passport.initialize());

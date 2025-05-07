@@ -3,17 +3,15 @@ const path = require('path')
 const fs = require('fs')
 
 
-module.exports.logIn = async (req,res)=>{
+module.exports.logIn = async (req, res) => {
     try {
         return res.render('logIn')
     } catch (error) {
         console.log(error);
         return res.redirect('back')
-        
+
     }
 }
-
-
 
 
 module.exports.dashboard = async (req, res) => {
@@ -21,14 +19,14 @@ module.exports.dashboard = async (req, res) => {
         return res.render('dashboard')
     } catch (error) {
         console.log(error);
-        return res.redirect('back')
+        return res.redirect('dashboard')
 
     }
 }
 
 module.exports.addAdmin = async (req, res) => {
     try {
-        
+
         return res.render('addAdmin')
     } catch (error) {
         console.log(error);

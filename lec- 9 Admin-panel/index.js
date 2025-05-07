@@ -1,10 +1,13 @@
 const express = require('express');
-const app = express()
-const port = 2580
+
+const db = require('./config/db');
+const app = express();
+const port = 2580;
 
 app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.use(express.urlencoded({ extended: true }));
 

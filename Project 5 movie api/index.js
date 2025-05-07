@@ -11,7 +11,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.set('view engine', 'ejs');  
+app.set('view engine', 'ejs'); 
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -41,7 +41,7 @@ app.post('/add', async (req, res) => {
         res.redirect('/');
     } catch (err) {
         console.error(err);
-        res.status(500).send("Error adding movie");
+        console.log("Error adding movie");
     }
 });
 
@@ -52,7 +52,7 @@ app.get('/movie/:id', async (req, res) => {
         res.render('view', { movie });
     } catch (err) {
         console.error(err);
-        res.status(404).send("Movie not found");
+        console.log("Movie not found");
     }
 });
 
@@ -63,7 +63,7 @@ app.get('/update/:id', async (req, res) => {
         res.render('update', { movie });
     } catch (err) {
         console.error(err);
-        res.status(404).send("Movie not found");
+       console.log("Movie not found");
     }
 });
 
@@ -75,7 +75,7 @@ app.post('/update/:id', async (req, res) => {
         res.redirect('/');
     } catch (err) {
         console.error(err);
-        res.status(500).send("Error updating movie");
+        console.log("Error updating movie");
     }
 });
 
@@ -86,7 +86,7 @@ app.get('/delete/:id', async (req, res) => {
         res.redirect('/');
     } catch (err) {
         console.error(err);
-        res.status(500).send("Error deleting movie");
+        console.log("Error deleting movie");
     }
 });
 
