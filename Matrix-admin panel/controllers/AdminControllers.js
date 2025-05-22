@@ -2,23 +2,23 @@ const AdminModel = require('../models/AdminModel')
 const path = require('path');
 const fs = require('fs');
 const Admin = require('../models/AdminModel');
-const nodemailer=require("nodemailer")
+const nodemailer = require("nodemailer")
 
 module.exports.SignIn = async (req, res) => {
     try {
 
-         if(req.cookies.AdminData){
+        if (req.cookies.AdminData) {
             return res.redirect('/dashboard')
         }
-        else{
-         res.render('SignIn')
+        else {
+            res.render('SignIn')
         }
 
 
-     } catch (err) {
-         console.log(err);
-         res.redirect('back')
-     }
+    } catch (err) {
+        console.log(err);
+        res.redirect('back')
+    }
 }
 
 module.exports.CheckSignIn = async (req, res) => {
@@ -32,7 +32,7 @@ module.exports.CheckSignIn = async (req, res) => {
             if (isAdminExit1.password == req.body.password) {
                 res.cookie('AdminData', isAdminExit1);
                 console.log(isAdminExit1);
-                return res.redirect('/dashboard')    
+                return res.redirect('/dashboard')
             } else {
                 console.log("Password is incorrect")
                 return res.redirect('back')
@@ -50,22 +50,22 @@ module.exports.CheckSignIn = async (req, res) => {
 
 }
 
-module.exports.myProfile=async(req,res)=>{
+module.exports.myProfile = async (req, res) => {
     try {
-        res.render('myprofile',{AdminDataa : req.cookies.AdminData})
-        
+        res.render('myprofile', { AdminDataa: req.cookies.AdminData })
+
     } catch (error) {
         console.log(err);
         res.redirect('back')
     }
 }
 
-module.exports.logout=(req,res)=>{
-    try{
-       res.clearCookie('AdminData')
-       return res.redirect('/')
+module.exports.logout = (req, res) => {
+    try {
+        res.clearCookie('AdminData')
+        return res.redirect('/')
     }
-    catch{
+    catch {
         console.log(err)
         return res.redirect('back')
     }
@@ -74,12 +74,12 @@ module.exports.logout=(req,res)=>{
 
 module.exports.dashboard = (req, res) => {
     try {
-        if(req.cookies.AdminData){
-            return res.render('Dashboard',{
-                AdminDataa : req.cookies.AdminData
+        if (req.cookies.AdminData) {
+            return res.render('Dashboard', {
+                AdminDataa: req.cookies.AdminData
             })
         }
-        else{
+        else {
             return res.redirect('/')
         }
     }
@@ -93,17 +93,17 @@ module.exports.dashboard = (req, res) => {
 
 module.exports.addAdmin = (req, res) => {
     try {
-        if(req.cookies.AdminData){
+        if (req.cookies.AdminData) {
             return res.render('addAdmin',
                 {
-                    AdminDataa : req.cookies.AdminData
+                    AdminDataa: req.cookies.AdminData
                 }
             )
         }
-        else{
+        else {
             return res.redirect('/')
         }
-        
+
     }
     catch (err) {
         console.log(err);
@@ -118,7 +118,7 @@ module.exports.updateAdmin = async (req, res) => {
             let singleAdmin = await AdminModel.findById(id);
             return res.render('EditAdmin', {
                 singleAdmin,
-                AdminDataa : req.cookies.AdminData
+                AdminDataa: req.cookies.AdminData
             })
         }
         else {
@@ -134,18 +134,18 @@ module.exports.updateAdmin = async (req, res) => {
 }
 module.exports.viewAdmin = async (req, res) => {
     try {
-        
-        if(req.cookies.AdminData){
+
+        if (req.cookies.AdminData) {
             let AllAdminRecords = await AdminModel.find()
             res.render('ViewAdmin', {
                 AllAdminRecords,
-                AdminDataa : req.cookies.AdminData
+                AdminDataa: req.cookies.AdminData
             })
         }
-        else{
+        else {
             return res.redirect('/')
         }
-        
+
     }
     catch (err) {
         console.log(err);
@@ -199,45 +199,45 @@ module.exports.deleteAdmin = async (req, res) => {
     }
 
 }
-module.exports.changepassword= async(req,res)=>{
-    try{
-        res.render('changepassword',{
-            AdminDataa : req.cookies.AdminData
+module.exports.changepassword = async (req, res) => {
+    try {
+        res.render('changepassword', {
+            AdminDataa: req.cookies.AdminData
         })
     }
-    catch(err){
+    catch (err) {
         console.log(err)
         res.redirect('back')
     }
 }
-module.exports.Changepasswords = async(req,res) => {
-    try{
+module.exports.Changepasswords = async (req, res) => {
+    try {
         console.log(req.body)
-      let AdminDatas = await AdminModel.findById(req.cookies.AdminData._id)
-      console.log(AdminDatas);
-      if(req.body.Oldpassword == AdminDatas.password){
-        if(req.body.Newpassword != req.body.Oldpassword){
-            if(req.body.Newpassword == req.body.Currentpassword){
-                await AdminModel.findByIdAndUpdate(AdminDatas.id , {password:req.body.Newpassword})
-                console.log('ok')
-                res.redirect('/logout')
+        let AdminDatas = await AdminModel.findById(req.cookies.AdminData._id)
+        console.log(AdminDatas);
+        if (req.body.Oldpassword == AdminDatas.password) {
+            if (req.body.Newpassword != req.body.Oldpassword) {
+                if (req.body.Newpassword == req.body.Currentpassword) {
+                    await AdminModel.findByIdAndUpdate(AdminDatas.id, { password: req.body.Newpassword })
+                    console.log('ok')
+                    res.redirect('/logout')
+                }
+                else {
+                    console.log('new and conform errror')
+                    res.redirect('back')
+                }
             }
-            else{
-                console.log('new and conform errror')
+            else {
+                console.log('current and new errror')
                 res.redirect('back')
-              }
+            }
         }
-        else{
-            console.log('current and new errror')
+        else {
+            console.log('current errror')
             res.redirect('back')
-          }
-      }
-      else{
-        console.log('current errror')
-        res.redirect('back')
-      }
+        }
     }
-    catch(err){
+    catch (err) {
         console.log(err)
         res.redirect('back')
     }
@@ -260,7 +260,7 @@ module.exports.editAdmin = async (req, res) => {
             return res.render('EditAdmin', {
                 UpdataAdminData,
                 update,
-                AdminDataa : req.cookies.AdminData
+                AdminDataa: req.cookies.AdminData
             })
         }
         else {
@@ -305,121 +305,121 @@ module.exports.EditAdminRecord = async (req, res) => {
     }
 }
 
-module.exports.verfiyemail=async(req,res)=>{
-    try{
+module.exports.verfiyemail = async (req, res) => {
+    try {
         let isAdminExit = await AdminModel.find({ email: req.body.email }).countDocuments();
-         console.log(isAdminExit)
-         if(isAdminExit==1){
-            const isAdminExit=await AdminModel.findOne({email:req.body.email})
+        console.log(isAdminExit)
+        if (isAdminExit == 1) {
+            const isAdminExit = await AdminModel.findOne({ email: req.body.email })
             console.log(isAdminExit)
 
-            const otp = Math.floor(Math.random()*10000)
-            console.log('otp',otp);
-            res.cookie('otp',otp);
-            res.cookie('email',isAdminExit.email);
+            const otp = Math.floor(Math.random() * 10000)
+            console.log('otp', otp);
+            res.cookie('otp', otp);
+            res.cookie('email', isAdminExit.email);
             const transporter = nodemailer.createTransport({
                 host: "smtp.gmail.com",
                 port: 587,
                 secure: false,
                 auth: {
-                  user: "mantra.tilva.7324@gmail.com",
-                  pass: "ttvnwmbqmmkpqboz",
+                    user: "akoliyaraj62@gmail.com",
+                    pass: "micmgfdtxypcezwa",
                 },
-                tls:{
-                    rejectUnauthorized : false 
+                tls: {
+                    rejectUnauthorized: false
                 }
-              });
-              const info = await transporter.sendMail({
-                from: 'mantra.tilva.7324@gmail.com', 
-                to: "mantra.tilva.7324@gmail.com", 
+            });
+            const info = await transporter.sendMail({
+                from: 'akoliyaraj62@gmail.com',
+                to: "akoliyaraj62@gmail.com",
                 subject: "otp", // Subject line
                 html: `<b>Here is your otp ${otp}</b>` // html body
-              });
-              console.log("otp send succcesfully:-",otp);
-            
-              console.log("Message sent: %s", info.messageId);
-              
-            }
-            res.redirect('/verifyotp') 
+            });
+            console.log("otp send succcesfully:-", otp);
+
+            console.log("Message sent: %s", info.messageId);
+
         }
-    
-    catch(err){
+        res.redirect('/verifyotp')
+    }
+
+    catch (err) {
         console.log(err);
-        res.redirect('back')  
+        res.redirect('back')
     }
 
 }
 
-module.exports.verifyotp=async(req,res)=>{
- try{
-     res.render('verifyotp')
-     
- }
- catch(err){
-    console.log(err);
-    res.redirect('back') 
- }
+module.exports.verifyotp = async (req, res) => {
+    try {
+        res.render('verifyotp')
+
+    }
+    catch (err) {
+        console.log(err);
+        res.redirect('back')
+    }
 }
 
-module.exports.verifyotps=async(req,res)=>{
-    try{
+module.exports.verifyotps = async (req, res) => {
+    try {
         console.log(req.body)
         console.log(req.cookies)
-        if(req.body.otp=req.cookies.otp){
+        if (req.body.otp = req.cookies.otp) {
             res.clearCookie('otp')
             return res.redirect('/checkforgetpass')
-    
-         }
-         else{
+
+        }
+        else {
             console.log("err")
-            return res.redirect('back')           
-         }
+            return res.redirect('back')
+        }
     }
-    catch(err){
+    catch (err) {
         console.log(err);
-        res.redirect('back') 
+        res.redirect('back')
     }
 }
 
-module.exports.checkforgetpass=async(req,res)=>{
-    try{
+module.exports.checkforgetpass = async (req, res) => {
+    try {
         return res.render('checkforgetpass')
     }
-    catch(err){
+    catch (err) {
         console.log(err);
-        res.redirect('back') 
+        res.redirect('back')
     }
 }
 
-module.exports.checkforgotpassword=async(req,res)=>{
-    try{
-        let singledata = await AdminModel.find({ email: req.cookies.email }).countDocuments();
+module.exports.checkforgotpassword = async (req, res) => {
+    try {
+        let singledata = await AdminModel.find({ email: req.cookies.email });
         console.log(singledata)
-        if(singledata == 1){
+        if (singledata == 1) {
             console.log('okey');
-            let singleadmindata = await AdminModel.findOne({email:req.cookies.email})
-            if(singleadmindata){
-                let checkforgetpass = await AdminModel.findByIdAndUpdate(singleadmindata.id,{password:req.body.newpassword})
-                if(checkforgetpass){
+            let singleadmindata = await AdminModel.findOne({ email: req.cookies.email })
+            if (singleadmindata) {
+                let checkforgetpass = await AdminModel.findByIdAndUpdate(singleadmindata.id, { password: req.body.newpassword })
+                if (checkforgetpass) {
                     res.clearCookie('email')
                     return res.redirect('/')
                 }
-                else{
+                else {
                     return res.redirect('back')
-                }    
+                }
             }
-            else{
+            else {
                 console.log('no data find');
                 return res.redirect('back')
             }
         }
-        else{
+        else {
             console.log('more email available');
             return res.redirect('back')
         }
     }
-    catch(err){
+    catch (err) {
         console.log(err);
-        res.redirect('back') 
+        res.redirect('back')
     }
 }

@@ -1,147 +1,137 @@
 <%- include('Header') %>
-    <div class="page-wrapper">
-        <div class="page-breadcrumb">
-            <div class="row">
-                <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Add Admin</h4>
-                    <div class="ml-auto text-right">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Library</li>
-                            </ol>
-                        </nav>
-                    </div>
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Add Admin</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Admin</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <form class="form-horizontal" method="post" action="/insertAdminRecord" enctype="multipart/form-data">
-                            <div class="card-body">
-                                <h4 class="card-title">Add Admin</h4>
-                                <div class="form-group row">
-                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">First
-                                        Name</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="fname" name="fname"
-                                            placeholder="First Name Here" >
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last
-                                        Name</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name Here">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="lname"
-                                        class="col-sm-3 text-right control-label col-form-label">Email</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Here">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="lname"
-                                        class="col-sm-3 text-right control-label col-form-label">Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="password" class="form-control" id="lname" name="password"
-                                            placeholder="Password Here">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="lname"
-                                        class="col-sm-3 text-right control-label col-form-label">Gender</label>
-                                    <div class="col-md-9">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customControlValidation1" name="gender" value="male" >
-                                            <label class="custom-control-label" for="customControlValidation1">Male</label>
-                                        </div>
-                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customControlValidation2" name="gender" value="female" >
-                                            <label class="custom-control-label" for="customControlValidation2">FeMale</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="hobby"
-                                        class="col-sm-3 text-right control-label col-form-label">Hobby</label>
-                                    <div class="col-md-9">
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input"
-                                                id="customControlAutosizing1" name="hobby" value="Riding">
-                                            <label class="custom-control-label"
-                                                for="customControlAutosizing1">Riding</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input"
-                                                id="customControlAutosizing2"  name="hobby" value="Cricket">
-                                            <label class="custom-control-label"
-                                                for="customControlAutosizing2">Cricket</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input type="checkbox" class="custom-control-input"
-                                                id="customControlAutosizing3" name="hobby" value="Sliping">
-                                            <label class="custom-control-label"
-                                                for="customControlAutosizing3">Sliping</label>
-                                        </div>
-                                    </div>
-                                </div>
+    </div>
 
-                                <div class="form-group row">
-                                    <label class="col-sm-3 text-right control-label col-form-label">Select
-                                        City</label>
-                                    <div class="col-md-9">
-                                        <% var CityName=["Surat","Vadodra","Ahamdabad","Rajkot"] %>
-                                            <select name="city" class="select2 form-control custom-select"
-                                                style="width: 100%; height:36px;">
-                                                <option value="">Select City</option>
-                                                <% CityName.map((v,i)=>{ %>
-                                                    <option value="<%= v %>">
-                                                        <%= v %>
-                                                    </option>
-                                                    <% }) %>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg border-0 rounded">
+                    <form class="form-horizontal" method="POST" action="/insertAdminRecord" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4 text-primary font-weight-bold">Admin Information</h4>
 
-                                            </select>
-                                    </div>
+                            <!-- First Name -->
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 col-form-label text-right">First Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="fname" name="fname" class="form-control form-control-lg" placeholder="Enter first name" required>
                                 </div>
-                                <div class="form-group row">
-                                    <label
-                                        class="col-sm-3 text-right control-label col-form-label">Image</label>
-                                    <div class="col-md-9">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="validatedCustomFile" name="image">
-                                            <label class="custom-file-label" for="validatedCustomFile">Choose
-                                                file...</label>
-                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
-                                        </div>
-                                    </div>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="form-group row">
+                                <label for="lname" class="col-sm-3 col-form-label text-right">Last Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="lname" name="lname" class="form-control form-control-lg" placeholder="Enter last name" required>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="cono1"
-                                        class="col-sm-3 text-right control-label col-form-label">Message</label>
-                                    <div class="col-sm-9">
-                                        <textarea class="form-control" placeholder="Enter your massage" name="massage"></textarea>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Enter email address" required>
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-3 col-form-label text-right">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required>
+                                </div>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">Gender</label>
+                                <div class="col-sm-9 d-flex align-items-center">
+                                    <div class="form-check mr-4">
+                                        <input class="form-check-input" type="radio" name="gender" id="genderMale" value="male" required>
+                                        <label class="form-check-label" for="genderMale">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="female">
+                                        <label class="form-check-label" for="genderFemale">Female</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="border-top">
-                                <div class="card-body">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                            <!-- Hobbies -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">Hobbies</label>
+                                <div class="col-sm-9">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="hobby" id="hobbyRiding" value="Riding">
+                                        <label class="form-check-label" for="hobbyRiding">Riding</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="hobby" id="hobbyCricket" value="Cricket">
+                                        <label class="form-check-label" for="hobbyCricket">Cricket</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="hobby" id="hobbySleeping" value="Sleeping">
+                                        <label class="form-check-label" for="hobbySleeping">Sleeping</label>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
 
+                            <!-- City Dropdown -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">City</label>
+                                <div class="col-sm-9">
+                                    <% var CityName = ["Surat", "Vadodara", "Ahmedabad", "Rajkot"]; %>
+                                    <select name="city" class="form-control form-control-lg" required>
+                                        <option value="">Select City</option>
+                                        <% CityName.map((city) => { %>
+                                            <option value="<%= city %>"><%= city %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
 
+                            <!-- Image Upload -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">Profile Image</label>
+                                <div class="col-sm-9">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="profileImage" name="image">
+                                        <label class="custom-file-label" for="profileImage">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="form-group row">
+                                <label for="message" class="col-sm-3 col-form-label text-right">Message</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control form-control-lg" name="message" id="message" rows="3" placeholder="Enter your message"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer text-right">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </form>
                 </div>
-
             </div>
-
-          
         </div>
-
-        <%- include('Footer') %>
+    </div>
+</div>
+<%- include('Footer') %>

@@ -12,7 +12,6 @@ Route.get("/verfiyemail",(req,res)=>{
 })
 Route.post('/verfiyemailform',AdminCtl.verfiyemail)
 
-
 Route.get('/dashboard',AdminCtl.dashboard)
 Route.get('/addAdmin',AdminCtl.addAdmin)
 Route.get('/changepassword',AdminCtl.changepassword)

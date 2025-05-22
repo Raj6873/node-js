@@ -32,7 +32,7 @@ const AdminSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    massage : {
+    Message : {
         type: String,
         required: true
     }
