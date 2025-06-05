@@ -2,7 +2,7 @@ const express = require('express');
 const db = require('./config/db')
 
 const app = express();
-const port = 2580;
+const port = 5000;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));

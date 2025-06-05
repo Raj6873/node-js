@@ -100,7 +100,7 @@ module.exports.editAdmin = async (req, res) => {
     }
 }
 
-module.exports.editAdminRecords = async (req, res) => {
+exports.editAdminRecords = async (req, res) => {
     try {
         if (req.file) {
             let singleData = await Admin.findById(req.body.id)
