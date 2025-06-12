@@ -1,0 +1,211 @@
+<%- include('header') %>
+    <!-- partial -->
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12 col-xl-6 grid-margin stretch-card">
+                    <div class="row w-100 flex-grow">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Website Analytics</h4>
+                                    <p class="text-muted">Traffic increased by <span class="text-success">25%</span>
+                                        from last week.</p>
+                                    <div class="row align-items-center">
+                                        <div class="col-md-7">
+                                            <div class="d-flex justify-content-between analytics-data">
+                                                <div class="data-item">
+                                                    <p class="mb-1">Users</p>
+                                                    <h5 class="font-weight-bold">93,956</h5>
+                                                </div>
+                                                <div class="data-item">
+                                                    <p class="mb-1">Bounce Rate</p>
+                                                    <h5 class="font-weight-bold">58,605</h5>
+                                                </div>
+                                                <div class="data-item">
+                                                    <p class="mb-1">Page Views</p>
+                                                    <h5 class="font-weight-bold">78,254</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 text-right">
+                                            <select class="form-control chart-filter">
+                                                <option>Day</option>
+                                                <option>Week</option>
+                                                <option>Month</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <canvas id="audience-chart" height="150"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Weekly Revenue</h4>
+                                    <p class="text-success font-weight-bold">+20.15%</p>
+                                    <h5 class="font-weight-bold">$22,736</h5>
+                                    <p class="text-muted">Avg Sessions</p>
+                                    <canvas id="revenue-chart" height="150"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Today's Tasks</h4>
+                                    <p class="text-warning font-weight-bold">+45.39%</p>
+                                    <h5 class="font-weight-bold">17,247</h5>
+                                    <p class="text-muted">Completed Tasks</p>
+                                    <canvas id="tasks-chart" height="150"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    var audienceChart = new Chart(document.getElementById("audience-chart"), {
+                        type: 'line',
+                        data: { /* Chart data */ },
+                        options: { /* Custom styles */ }
+                    });
+
+                    var revenueChart = new Chart(document.getElementById("revenue-chart"), {
+                        type: 'bar',
+                        data: { /* Chart data */ },
+                        options: { /* Custom styles */ }
+                    });
+
+                    var tasksChart = new Chart(document.getElementById("tasks-chart"), {
+                        type: 'doughnut',
+                        data: { /* Chart data */ },
+                        options: { /* Custom styles */ }
+                    });
+                </script>
+
+                <div class="col-12 col-xl-6 grid-margin stretch-card">
+                    <div class="row w-100 flex-grow">
+                        <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-title">Regional Load</p>
+                                    <p class="text-muted">Last update: 2 Hours ago</p>
+                                    <div class="regional-chart-legend d-flex align-items-center flex-wrap mb-1"
+                                        id="regional-chart-legend"></div>
+                                    <canvas height="280" id="regional-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body pb-0">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <p class="card-title mb-0 mr-1">Today activity</p>
+                                        <div class="badge badge-info badge-pill">2</div>
+                                    </div>
+                                    <div class="d-flex flex-wrap pt-2">
+                                        <div class="mr-4 mb-lg-2 mb-xl-0">
+                                            <p>Time On Site</p>
+                                            <h4 class="font-weight-bold mb-0">77.15 %</h4>
+                                        </div>
+                                        <div>
+                                            <p>Page Views</p>
+                                            <h4 class="font-weight-bold mb-0">14.15 %</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <canvas height="150" id="activity-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-12 stretch-card">
+                            <div class="card">
+                                <div class="card-body pb-0">
+                                    <p class="card-title">Server Status 247</p>
+                                    <div class="d-flex justify-content-between flex-wrap">
+                                        <p class="text-muted">Last update: 2 Hours ago</p>
+                                        <div
+                                            class="d-flex align-items-center flex-wrap server-status-legend mt-3 mb-3 mb-md-0">
+                                            <div class="item mr-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="color-bullet"></div>
+                                                    <h5 class="font-weight-bold mb-0">128GB</h5>
+                                                </div>
+                                                <p class="mb-">Total Usage</p>
+                                            </div>
+                                            <div class="item mr-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="color-bullet"></div>
+                                                    <h5 class="font-weight-bold mb-0">92%</h5>
+                                                </div>
+                                                <p class="mb-">Memory Usage</p>
+                                            </div>
+                                            <div class="item mr-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="color-bullet"></div>
+                                                    <h5 class="font-weight-bold mb-0">16%</h5>
+                                                </div>
+                                                <p class="mb-">Disk Usage</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <canvas height="170" id="status-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- row end -->
+            <div class="row">
+                <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card bg-facebook d-flex align-items-center">
+                        <div class="card-body py-5">
+                            <div
+                                class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
+                                <i class="mdi mdi-facebook text-white icon-lg"></i>
+                                <div class="ml-3 ml-md-0 ml-xl-3">
+                                    <h5 class="text-white font-weight-bold">2.62 Subscribers</h5>
+                                    <p class="mt-2 text-white card-text">You main list growing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card bg-google d-flex align-items-center">
+                        <div class="card-body py-5">
+                            <div
+                                class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
+                                <i class="mdi mdi-google-plus text-white icon-lg"></i>
+                                <div class="ml-3 ml-md-0 ml-xl-3">
+                                    <h5 class="text-white font-weight-bold">3.4k Followers</h5>
+                                    <p class="mt-2 text-white card-text">You main list growing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 grid-margin stretch-card">
+                    <div class="card bg-twitter d-flex align-items-center">
+                        <div class="card-body py-5">
+                            <div
+                                class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
+                                <i class="mdi mdi-twitter text-white icon-lg"></i>
+                                <div class="ml-3 ml-md-0 ml-xl-3">
+                                    <h5 class="text-white font-weight-bold">3k followers</h5>
+                                    <p class="mt-2 text-white card-text">You main list growing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <%- include('footer') %>

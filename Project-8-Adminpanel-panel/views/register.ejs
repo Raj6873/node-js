@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spica Admin - Register</title>
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+    <style>
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .register-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        .register-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .register-header img {
+            width: 120px;
+        }
+        .form-group label {
+            font-weight: 600;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .text-center a {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <img src="../../images/logo.svg" alt="logo">
+            <h4>Join Us Today!</h4>
+            <p>Create your account in just a few steps</p>
+        </div>
+        <% if(message.success) { %>
+        <div class="alert alert-success">
+            <%= message.success %>
+        </div>
+        <% } %>
+        <form method="post" action="/registerUser">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" placeholder="Enter your username" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" placeholder="Enter your email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Enter your password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Confirm your password" name="cpassword" required>
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" required>
+                <label class="form-check-label">I agree to the Terms & Conditions</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <div class="text-center mt-4">
+                <span>Already have an account? </span><a href="/">Login</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<%- include('../header') %>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="card shadow-sm rounded" style="font-family: 'Poppins', sans-serif;">
+                    <div class="card-body">
+                        <div class="title-box d-flex justify-content-between align-items-center pb-4 border-bottom">
+                            <h2 class="card-title mb-0" style="font-size: 28px; font-weight: 600;">Add Category</h2>
+                            <div>
+                                <a href="/tablecategery" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-list"></i> View Categories</a>
+                            </div>
+                        </div>
+                        <form class="mt-4" method="post" action="/Addcategory">
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="category" placeholder="Enter Category" name="category" required>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn" style="background-color:#6640b2; color: white;">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+</div>
+
+<%- include('../footer') %>

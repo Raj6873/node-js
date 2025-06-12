@@ -1,0 +1,90 @@
+<%- include('../header') %>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="card shadow-lg p-4">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0">Update Product Category</h3>
+                        <a href="/tableproduct" class="btn btn-light">View Product Category</a>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="post" action="/updateproduct" enctype="multipart/form-data">
+                            <input type="hidden" name="editid" value="<%= single.id %>">
+                            
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="font-weight-bold">Category</label>
+                                    <select name="category" class="form-control">
+                                        <option>---Select Category---</option>
+                                        <% category.map((cat)=>{ %>
+                                            <option <% if(cat.category==single.categoryId.category) { %> selected <%}%>
+                                                value="<%= cat.id %>"><%= cat.category %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <label class="font-weight-bold">Subcategory</label>
+                                    <select name="subcategory" class="form-control">
+                                        <option>---Select Subcategory---</option>
+                                        <% subcategory.map((sub)=>{ %>
+                                            <option <% if(sub.subcategory==single.subcategoryId.subcategory) {%>
+                                                selected <% } %> value="<%= sub.id %>"><%= sub.subcategory %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="font-weight-bold">Extra Category</label>
+                                    <select name="excategory" class="form-control">
+                                        <option>---Select Extra Category---</option>
+                                        <% excategory.map((ex)=>{ %>
+                                            <option <% if(ex.excategory==single.excategoryId.excategory) { %> selected <% } %> value="<%= ex.id %>"><%= ex.excategory %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-3">
+                                <div class="col-md-4">
+                                    <label class="font-weight-bold">Title</label>
+                                    <input type="text" name="title" value="<%= single.title %>" class="form-control" placeholder="Enter title">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="font-weight-bold">Price</label>
+                                    <input type="text" name="price" value="<%= single.price %>" class="form-control" placeholder="Enter price">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="font-weight-bold">Quantity</label>
+                                    <input type="text" name="qty" value="<%= single.qty %>" class="form-control" placeholder="Enter quantity">
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-3">
+                                <div class="col-md-8">
+                                    <label class="font-weight-bold">Description</label>
+                                    <textarea class="form-control" name="description" rows="5"><%= single.description %></textarea>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <label class="font-weight-bold">Current Image</label>
+                                    <img src="<%= single.image %>" class="img-thumbnail" width="150">
+                                    <input type="file" name="image" class="form-control mt-2">
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn px-4" style="background-color: #6640b2; color: white;">Update</button>
+                                <button type="reset" class="btn btn-secondary px-4">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer') %>
