@@ -1,0 +1,109 @@
+<%- include('../header') %>
+
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="card p-4 shadow col-7 m-5 position-absolute" style=" left: 20%; top: 10%;">
+                        <h2 class="card-title  m-4" style="font-size: 40px; font-weight: 500;">
+                            Edit Sub-Category
+                        </h2>
+
+                        <% if(locals.message?.success) { %>
+                            <div class="alert alert-success">
+                                <%= locals.message?.success %>
+                            </div>
+                            <% } %>
+
+                                <form method="post" action="/exsubcategory/insertexsubcategory" class="form-horizontal">
+                                    <input type="hidden" value="<%= single.id %>" name="editid">
+                                    <div class="card-body">
+                                        <div class="form-group row my-3">
+                                            <label for="fname" class="col-sm-4 text-right control-label col-form-label">
+                                                Category</label>
+                                            <div class="col-sm-8">
+                                                <select name="category" class="form-control">
+                                                    <option>---select category---</option>
+                                                    <% category.map((val)=>{ %>
+                                                        <option <% if(val?.category==single?.categoryId?.category) { %>
+                                                            selected
+                                                            <% } %>
+                                                                value="<%= val?.id %>">
+                                                                    <%= val?.category %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row my-3">
+                                            <label for="fname" class="col-sm-4 text-right control-label col-form-label">
+                                                Sub-Category</label>
+                                            <div class="col-sm-8">
+                                                <select name="subcategory" class="form-control">
+                                                    <option>---select Sub-Category---</option>
+                                                    <% subcategory.map((val)=>{ %>
+                                                        <option <%
+                                                            if(val?.subcategory==single?.subcategoryId?.subcategory) {
+                                                            %>
+                                                            selected
+                                                            <% } %>
+                                                                value="<%= val?.id %>">
+                                                                    <%= val?.subcategory %>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="fname"
+                                                class="col-sm-4 text-right control-label col-form-label">Extra Subcategory</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" value="<%= single?.exsubcategory %>"
+                                                    name="exsubcategory" class="form-control" placeholder="Ex_Subcategory">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="border-top">
+                                        <div class="card-body">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <!-- editor -->
+
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+    </div>
+
+    <%- include('../footer') %>

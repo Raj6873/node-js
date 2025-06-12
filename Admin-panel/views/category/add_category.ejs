@@ -1,0 +1,26 @@
+<%- include('../header') %>
+
+    <body class="d-flex align-items-center justify-content-center bg-light position-relative">
+
+        <div class="card p-4 shadow col-7 m-5 position-absolute" style="height: 400px; left: 20%; top: 10%;">
+            <% if(locals?.message?.success) { %>
+                <div class="alert alert-success" id="success-message">
+                    <%= locals?.message?.success %>
+                </div>
+                <% } %>
+
+                    <h2 class="card-title  mb-2" style="font-size: 40px; font-weight: 500;">Add Category</h2>
+                    <p class=" text-muted">Enter category details below</p>
+
+                    <form action="/category/insertcategory" method="post" class="mt-3 ">
+                        <div class="mb-3 ">
+                            <label for="categoryName" class="form-label">Category Name</label>
+                            <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary ">Add Category</button>
+                    </form>
+
+        </div>
+    </body>
+
+    <%- include('../footer') %>
