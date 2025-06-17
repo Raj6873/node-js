@@ -1,14 +1,27 @@
-const express =require ('express');
+const express = require('express');
 
-const route =express.Router();
+const route = express.Router();
 
 console.log("Routing is stated...?")
 
-const{fetchdatauser ,insertdatauser,deletdatauser,upadetdatauser} =require('../controllers/usercoontroller')
+const { fetchdatauser
+    , insertdatauser
+    , deletdatauser,
+    upadetdatauser
+} = require('../controllers/usercontroller');
 
-route.get("/user",fetchdatauser)
-route.post("/user",insertdatauser)
-route.delete("/user/:id",deletdatauser)
-route.patch("/user/:id",upadetdatauser)
+// fetchdatauser
+route.get("/user", fetchdatauser)
 
-module.exports =route;
+// insertdatauser
+route.post("/user", insertdatauser)
+
+// upadetdatauser
+route.patch("/user/:id", upadetdatauser)
+
+// deletdatauser
+route.delete("/user/:id", deletdatauser)
+
+route.use("/student", require("./studentRouter"));
+
+module.exports = route;
