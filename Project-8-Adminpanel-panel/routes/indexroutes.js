@@ -61,10 +61,10 @@ routes.post('/updateExcategory', excategorycontrollers.updateExcategory);
 
 routes.get('/formproduct', productcontroller.formproduct);
 routes.get('/tableproduct', productcontroller.tableproduct);
-routes.post('/productadd', upload, productcontroller.productadd);
+routes.post('/productadd', productcontroller.productadd);
 routes.get('/deleteproductrecord', productcontroller.deleteproductrecord);
 routes.get('/editpeoductRecord', productcontroller.editpeoductRecord);
-routes.post('/updateproduct', upload, productcontroller.updateproduct);
+routes.post('/updateproduct', productcontroller.updateproduct);
 
 
 //status

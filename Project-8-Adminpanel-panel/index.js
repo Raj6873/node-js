@@ -9,7 +9,7 @@ const flash = require('connect-flash');
 
 app.set('view engine', 'ejs');
 
-const path = require('path'); 
+const path = require('path');
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
@@ -43,7 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setuser);
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/', require('./routes/indexroutes'));
 

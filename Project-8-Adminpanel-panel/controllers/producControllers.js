@@ -32,6 +32,9 @@ const tableproduct = async (req, res) => {
 }
 
 const productadd = async (req, res) => {
+    console.log("Body:", req.body);
+    console.log("File:", req.file);
+
     try {
         if (req.file) {
             let addRecord = await productModel.create({
@@ -43,12 +46,14 @@ const productadd = async (req, res) => {
                 qty: req.body.qty,
                 description: req.body.description,
                 image: req.file.path
-            })
+            });
             return res.redirect('/tableproduct');
+        } else {
+            return res.status(400).send("Image is required.");
         }
     } catch (error) {
-        console.log(error);
-        return false;
+        console.log("Error:", error);
+        res.status(500).send("Server Error");
     }
 }
 
