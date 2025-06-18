@@ -2,17 +2,17 @@ const multer = require('multer');
 
 console.log("multer is stated...?")
 
-const Storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "upload/studentupload")
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + file.orignalname)
+    cb(null, Date.now() + file.originalname);
     }
 });
 
 const upload = multer({
-    Storage: Storage,
+    storage:storage
 })
 
 module.exports = upload;
