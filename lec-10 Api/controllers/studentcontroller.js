@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt')
 const moment = require('moment');
 const fs = require('fs')
 
-console.log("student controoler..?")
 // addstudent data
 const addstudent = async (req, res) => {
 
@@ -29,31 +28,78 @@ const addstudent = async (req, res) => {
 }
 
 // fetchdatastudent data
-const fetchdatastudent = async (req,res)=>{
-    try{
-        const studentdata =await studentModel.findOne({});
+const fetchdatastudent = async (req, res) => {
+    try {
+        const studentdata = await studentModel.findOne({});
 
-        if(studentdata){
-        res.status(200).json({ msg: "Students data is inserted succussfully....", records : studentdata });
+        if (studentdata) {
+            res.status(200).json({ msg: "Students data is inserted succussfully....", records: studentdata });
         }
-        else{
+        else {
             res.status(200).json({ msg: "Students data not found..." });
-        }   
+        }
     }
-    catch(e){
-         res.status(400).json({ msg: "Something Went Wrong...", error: e });
+    catch (e) {
+        res.status(400).json({ msg: "Something Went Wrong...", error: e });
     }
 }
+const fetchSingleStudentdata = async (req, res) => {
+  try {
+    const singleStudent = await studentModel.findById(req.params.id);
+    if (fetchSingleStudentdata) {
+      res.status(200).json(singleStudent);
+    } else {
+      res.status(200).json({ msg: "Student not found.." });
+    }
+  } catch (e) {
+    res.status(400).json({ msg: "Something Went Wrong...", error: e });
+  }
+};
+//upadetstudentdata
+const upadetdatastudent = async (req, res) => {
+    try {
+        console.log(req.body);
+        console.log(req.file);
 
+        req.body.updated_date = moment().format("DD/MM/YYYY, h:mm:ss A");
+
+        if (req.body.password) {
+            req.body.password = await bcrypt.hash(req.body.password, 10);
+        }
+      
+    if (req.file) {
+      const data = await studentModel.findById(req.params.id);
+
+      if (data) {
+        fs.unlinkSync(data.image);
+        req.body.image = req.file.path;
+      }
+    }
+    const upadetstudentdata= await studentModel.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+
+    if (upadetstudentdata) {
+      res
+        .status(200)
+        .json({ update: true, msg: "Studentdata  updated is successfully..." });
+    } else {
+      res
+        .status(200)
+        .json({ update: false, msg: "Studentdata is  updated failed..." });
+    }
+  } catch (e) {
+    res.status(400).json({ msg: "Something Went Wrong...", error: e });
+  }
+}
 // deletedatastudent data
 const deletedatastudent = async (req, res) => {
     try {
-        const deletestudent = await studentModel.findByIdAndDelete(req.params.id);
-        
-        if (deletestudent) {
-            if (deletestudent.image && fs.existsSync(deletestudent.image)) {
-                fs.unlinkSync(deletestudent.image);
-            }
+        const deletestudentdata = await studentModel.findByIdAndDelete(req.params.id);
+
+        if (deletestudentdata) {
+            fs.unlinkSync(deletestudentdata.image);
 
             res.status(200).json({ msg: "Student data deleted successfully." });
         } else {
@@ -63,8 +109,11 @@ const deletedatastudent = async (req, res) => {
         res.status(500).json({ msg: "Something went wrong.", error: e.message });
     }
 }
+
 module.exports = {
     addstudent,
-    deletedatastudent,
     fetchdatastudent,
+    fetchSingleStudentdata,
+    upadetdatastudent,
+    deletedatastudent,
 }

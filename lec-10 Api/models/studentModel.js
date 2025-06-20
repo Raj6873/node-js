@@ -38,11 +38,18 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    created_date: {
+        type: String,
+        required: true,
+    },
+    updated_date: {
+        type: String,
+        required: true,
+    },
     image: {
         type: String,
         required: true,
     },
-
 });
 
 const studentModel = mongoose.model("student", studentSchema);

@@ -1,7 +1,5 @@
 const multer = require('multer');
 
-console.log("multer is stated...?")
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "upload/studentupload")
