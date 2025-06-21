@@ -1,5 +1,6 @@
 const express = require('express');
 
+
 const upload = require("../middlware/studentMulter");
 
 const route = express.Router();

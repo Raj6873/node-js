@@ -4,8 +4,6 @@ const db =require('./config/db')
 const app = express()
 const port = 2580
 
-
-
 app.use(express.urlencoded({extended:true}));
 
 app.use("/",require("./routes/index"))

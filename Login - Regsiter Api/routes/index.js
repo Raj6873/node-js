@@ -4,23 +4,10 @@ const route = express.Router();
 
 console.log("Routing is stated...?")
 
-const { fetchdatauser
-    , insertdatauser
-    , deletdatauser,
-    upadetdatauser
-} = require('../controllers/usercontroller');
+const {registerUserdata, loginUserdata}=require("../controllers/usercontroller")
 
-// fetchdatauser
-route.get("/user", fetchdatauser)
-
-// insertdatauser
-route.post("/user", insertdatauser)
-
-// upadetdatauser
-route.patch("/user/:id", upadetdatauser)
-
-// deletdatauser
-route.delete("/user/:id", deletdatauser)
+route.post("/register",registerUserdata)
+route.post("/login",loginUserdata)
 
 route.use("/student", require("./studentRouter"));
 
