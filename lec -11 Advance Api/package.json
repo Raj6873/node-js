@@ -1,0 +1,16 @@
+{
+  "name": "lec--11-advance-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.16.0",
+    "nodemon": "^3.1.10"
+  }
+}
