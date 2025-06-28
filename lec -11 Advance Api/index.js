@@ -1,11 +1,10 @@
 const express = require ("express");
+const db = require ("./config/db");
 
 const app =express()
 const port =2500;
 
-app.use("/",require("./routes/AdminRote"))
-app.use("/employe",require("./routes/employeRote"))
-app.use("/manger",require("./routes/mangerRoute"))
+
 
 app.listen(port,(err)=>{
     if(err){
