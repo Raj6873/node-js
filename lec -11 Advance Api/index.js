@@ -1,15 +1,17 @@
-const express = require ("express");
-const db = require ("./config/db");
+const express = require('express');
+const db = require("./config/db");
 
-const app =express()
-const port =2500;
+const port = 2580;
+const app = express();
 
+app.use(express.urlencoded({extended : true}));
 
+app.use("/", require("./routes/indexRoute"));
 
-app.listen(port,(err)=>{
-    if(err){
-        console.log("server is not conected...?",err);
-        return false;
+app.listen(port, (err) => {
+    if (err) {
+        console.log("Server failed to connect:", err);
+        return;
     }
-    console.log("server is conected  successfully...?")
+    console.log(`Server is connected successfully on port ${port} ✅`);
 });
