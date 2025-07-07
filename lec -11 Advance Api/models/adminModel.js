@@ -24,7 +24,7 @@ const adminSchema = mongoose.Schema({
         required: true,
     },
     image: {
-        type: Boolean,
+        type: String,
         required: true,
     },
     created_date: {

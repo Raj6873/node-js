@@ -24,3 +24,5 @@ const adminAuth = (req, res, next) => {
         res.status(401).json({ msg: "Token is  invalid..." });
     }
 }
+
+module.exports = adminAuth;
