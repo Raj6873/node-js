@@ -1,0 +1,16 @@
+{
+  "name": "blog-project_api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon service"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongose": "^0.0.2-security",
+    "nodemon": "^3.1.10"
+  }
+}
