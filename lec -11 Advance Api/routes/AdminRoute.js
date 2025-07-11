@@ -7,8 +7,20 @@ const adminAuth = require("../middlware/adminAuth");
 
 console.log("admin routing is called...");
 
-const { Adminregister ,Adminlogin} = require("../controllers/admincontroller");
+const { Adminregister, Adminlogin, AdminProfile ,changePassword,forgetpassword} = require("../controllers/admincontroller");
 
+// adminresgister
 route.post("/register", upload.single('image'), Adminregister);
+
+// adminlogin
 route.post("/login", Adminlogin);
+
+// adminprofile
+route.get("/profile", adminAuth, AdminProfile);
+
+// adminchangepassword
+route.post("/changePassword", adminAuth, changePassword);
+
+route.post("/forgetpassword", adminAuth, forgetpassword);
+
 module.exports = route;
