@@ -1,0 +1,121 @@
+<%-include('header')%>
+  <style>
+    .actions a i {
+      background-color: #405467;
+      color: white;
+      margin: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      font-size: 20px;
+      line-height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+  </style>
+  <!-- page content -->
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>View Admin Data</h3>
+        </div>
+
+        <div class="title_right">
+          <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." />
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="clearfix"></div>
+
+      <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>View Admin</small></h2>
+
+            <div class="clearfix"></div>
+          </div>
+
+
+
+          <div class="table-responsive">
+            <table class="table table-striped jambo_table bulk_action">
+              <thead>
+                <tr class="headings">
+                  <th class="column-title">Name</th>
+                  <th class="column-title">Email</th>
+                  <th class="column-title">DOB</th>
+                  <th class="column-title">Gender</th>
+                  <th class="column-title">Hobbies</th>
+                  <th class="column-title">City</th>
+                  <th class="column-title">paasword</th>
+                  <th class="column-title">Image</th>
+                  <th class="column-title">Message</th>
+                  <th class="column-title no-link last">
+                    <span class="nobr">Actions</span>
+                  </th>
+                  <th class="bulk-actions" colspan="7">
+                    <a class="antoo" style="color: #fff; font-weight: 500">Bulk Actions ( <span class="action-cnt">
+                      </span> )
+                      <i class="fa fa-chevron-down"></i></a>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <%viewAdmin.map((v,i)=>{%>
+                  <tr class="even pointer">
+
+                    <td class=" ">
+                      <%=v.name%>
+                    </td>
+                    <td class=" ">
+                      <%=v.email%>
+                    </td>
+                    <td class=" ">
+                      <%=v.dob%>
+                    </td>
+                    <td class=" ">
+                      <%=v.gender%>
+                    </td>
+                    <td class=" ">
+                      <%=v.hobby%>
+                    </td>
+                    <td class=" ">
+                      <%=v.city%>
+                    </td>
+                    <td class=" ">
+                      <%=v.password%>
+                    </td>
+                    <td class=" "><img src="<%=v.image%>" alt="" height="100"></td>
+                    <td class=" ">
+                      <%=v.message%>
+                    </td>
+                    <td class=" actions">
+                      <a href="/deleteAdmin/<%=v.id%>"><i class="fa fa-trash"></i></a>
+                      <a href="/editAdmin/<%=v.id%>"><i class="fa fa-edit"></i></a>
+                    </td>
+                  </tr>
+                  <%})%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /page content -->
+
+    <%-include('footer')%>
+  </div>
+  </div>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Site</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: rgba(255, 255, 255, 0.95);
+            --dark-overlay: rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(var(--dark-overlay), var(--dark-overlay)), 
+                        url('https://assetscdn1.paytm.com/images/cinema/2-(7)-e8045de0-ec16-11ee-be5f-7b4a82c5f7e3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(44, 62, 80, 0.1), rgba(52, 152, 219, 0.1));
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--secondary-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .logo h2:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+        }
+
+        nav ul li a:hover::before {
+            transform: scale(1);
+        }
+
+        .batton {
+            background: var(--secondary-color);
+            color: #fff !important;
+            padding: 12px 25px !important;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .batton::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary-color), #2980b9);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .batton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Main Content */
+        h1 {
+            color: #fff;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* Movie Cards */
+        .card {
+            background: var(--light-bg);
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(44, 62, 80, 0.1), rgba(52, 152, 219, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-img-top {
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        .card:hover .card-title {
+            color: var(--secondary-color);
+        }
+
+        .card-text {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2));
+            z-index: -1;
+            transition: transform 0.3s ease;
+            transform: translateX(-100%);
+        }
+
+        .btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-info {
+            background: var(--secondary-color);
+            border: none;
+        }
+
+        .btn-warning {
+            background: #f39c12;
+            border: none;
+        }
+
+        .btn-danger {
+            background: var(--accent-color);
+            border: none;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            margin-top: 40px;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .btn:hover {
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .card-img-top {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .btn-success {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <header>
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="javascript:void(0)" class="logo">
+                    <h2>Movie</h2>
+                </a>
+                <nav>
+                    <ul class="d-flex align-items-center" id="navtext">
+                        <li><a href="javascript:void(0)">Home</a></li>
+                        <li><a href="javascript:void(0)">About</a></li>
+                        <li><a href="javascript:void(0)">Services</a></li>
+                        <li><a href="javascript:void(0)">Projects</a></li>
+                        <li><a href="javascript:void(0)">Contact</a></li>
+                        <li><a href="javascript:void(0)" class="batton">ADDmovie</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReLFF4s6aZSHrqPj5ByyJhr06hYG-r7hQXKA&s" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src=".." class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+        <h1 class="my-4">Movies To Watch</h1>
+        <div class="row row-cols-1 row-cols-md-3">
+            <% movies.forEach(movie => { %>
+                <div class="col mb-4">
+                    <div class="card">
+                        <img src="<%= movie.movie_image %>" class="card-img-top" alt="<%= movie.movie_name %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= movie.movie_name %></h5>
+                            <p class="card-text"><%= movie.description.substring(0, 100) %>...</p>
+                            <p class="card-text"><strong>Price:</strong> <%= movie.price %></p>
+                            <div class="d-flex justify-content-between">
+                                <a href="/movie/<%= movie._id %>" class="btn btn-info">View</a>
+                                <a href="/update/<%= movie._id %>" class="btn btn-warning">Update</a>
+                                <a href="/delete/<%= movie._id %>" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>~~
+        <a href="/add" class="btn btn-success mb-3">Add New Movie</a>
+    </div>
+</body>
+
+</html>

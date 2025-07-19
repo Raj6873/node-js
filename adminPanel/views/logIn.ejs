@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Gentelella Alela</title>
+
+  <!-- Bootstrap -->
+  <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <!-- NProgress -->
+  <link href="../vendors/nprogress/nprogress.css" rel="stylesheet" />
+  <!-- Animate.css -->
+  <link href="../vendors/animate.css/animate.min.css" rel="stylesheet" />
+  <!-- Custom Theme Style -->
+  <link href="../build/css/custom.min.css" rel="stylesheet" />
+
+  <style>
+    .submit-btn button {
+      background-color: #324455;
+      color: white;
+      border: 2px solid transparent;
+      padding: 8px 20px;
+      border-radius: 5px;
+      box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+      font-weight: 600;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .submit-btn button:hover {
+      background-color: transparent;
+      color: #405467;
+      border-color: #405467;
+    }
+
+    .login_content h1 {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .login_content input {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body class="login">
+  <div class="login_wrapper">
+    <div class="animate form login_form">
+      <section class="login_content">
+        <form action="/dashboard" method="post">
+          <h1>Login</h1>
+
+          <div>
+            <input type="email" class="form-control" placeholder="Enter Email" required name="email" />
+          </div>
+
+          <div>
+            <input type="password" class="form-control" placeholder="Enter Password" required name="password" />
+          </div>
+
+          <div class="submit-btn">
+            <button type="submit">Log In</button>
+          </div>
+
+          <div class="separator">
+            <br />
+            <div>
+              <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+              <p>©2025 All Rights Reserved. Privacy and Terms.</p>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>

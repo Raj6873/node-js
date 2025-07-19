@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard Login</title>
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-header img {
+            width: 120px;
+        }
+        .form-group label {
+            font-weight: 500;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+        }
+        .social-login button {
+            width: 48%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="images/logo.svg" alt="logo">
+            <h4>Welcome Back!</h4>
+            <p>Sign in to your account</p>
+        </div>
+        <form method="post" action="/loginUser">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password" required>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Keep me signed in</label>
+                </div>
+                <a href="/forgetpassword" class="text-primary">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Sign In</button>
+            <div class="social-login mt-3">
+                <button type="button" class="btn btn-outline-primary">
+                    <i class="mdi mdi-facebook"></i> Facebook
+                </button>
+                <button type="button" class="btn btn-outline-danger">
+                    <i class="mdi mdi-google"></i> Google
+                </button>
+            </div>
+            <div class="text-center mt-4">
+                <span>Don't have an account? </span><a href="/register" class="text-primary">Sign up</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

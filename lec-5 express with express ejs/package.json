@@ -1,0 +1,17 @@
+{
+  "name": "lec-5-express-with-express-ejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon  index"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "lec-5-express-with-express-ejs": "file:",
+    "nodemon": "^3.1.9"
+  }
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        td input[type="text"],
+        td input[type="password"],
+        td input[type="checkbox"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        td input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        td input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .radio-group input,
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Employee Page</h1>
+
+        <!-- Form to add employee -->
+        <form method="post" action="/employee/addEMP">
+            <table>
+                <tr>
+                    <td><label for="name">Name</label></td>
+                    <td><input type="text" id="name" name="name" placeholder="Enter name"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password</label></td>
+                    <td><input type="password" id="password" name="password" placeholder="Enter password"></td>
+                </tr>
+
+
+                <tr>
+                    <td><label>Hobby</label></td>
+                    <td class="checkbox-group">
+                        <input type="checkbox" name="hobby" value="Reading"> Reading
+                        <input type="checkbox" name="hobby" value="Coding"> Coding
+                        <input type="checkbox" name="hobby" value="Eating"> Eating
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label>Gender</label></td>
+                    <td class="radio-group">
+                        <input type="radio" name="Gender" value="male"> Male
+                        <input type="radio" name="Gender" value="female"> Female
+                        <input type="radio" name="Gender" value="other"> Other
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="image">Image</label></td>
+                    <td><input type="file" id="password" name="image"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Add Employee"></td>
+                </tr>
+
+                <tr>
+                    <td>City</td>
+                    <td>
+                        <select name="city">
+                            <option value="">--Select--</option>
+                            <%let city=["Surat","Baroda", "Rajkot" , "Bhavanagar" ]%>
+
+                                <option value="">
+
+                                </option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Hobby</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</body>
+
+</html>

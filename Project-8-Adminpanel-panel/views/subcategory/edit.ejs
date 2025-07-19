@@ -1,0 +1,46 @@
+<%- include('../header') %>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card shadow-lg rounded-4" style="font-family: 'Poppins', sans-serif;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center pb-4 border-bottom">
+                            <h2 class="card-title mb-0" style="font-size: 28px; font-weight: 600;">Update SubCategory</h2>
+                            <a href="/tablesub" class="btn btn-outline-primary btn-lg">View SubCategory</a>
+                        </div>
+                        <form class="forms-sample mt-4" method="post" action="/Editsubcategory">
+                            <input type="hidden" name="editid" value="<%= single.id %>">
+                            
+                            <div class="form-group mb-3">
+                                <label class="form-label fw-semibold">Select Category</label>
+                                <select name="category" class="form-control form-select">
+                                    <option value="">---Select Category---</option>
+                                    <% category.map((cat)=>{ %>
+                                        <option <% if(cat.category==single.categoryId.category) { %> selected <% } %> value="<%= cat.id %>">
+                                            <%= cat.category %>
+                                        </option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label class="form-label fw-semibold">Subcategory Name</label>
+                                <input type="text" name="subcategory" class="form-control" placeholder="Enter Subcategory" value="<%= single.subcategory %>">
+                            </div>
+                            
+                            <div class="d-flex gap-3">
+                                <button type="submit" class="btn btn-primary btn-lg px-4">Submit</button>
+                                <button type="reset" class="btn btn-light btn-lg px-4">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+</div>
+
+<%- include('../footer') %>

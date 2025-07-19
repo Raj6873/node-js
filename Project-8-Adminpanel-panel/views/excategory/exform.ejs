@@ -1,0 +1,48 @@
+<%- include('../header') %>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg border-0 rounded-lg" style="font-family: 'Poppins', sans-serif;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center pb-4">
+                            <h2 class="card-title mb-0" style="font-size: 26px; font-weight: 600;">Add Extra Category</h2>
+                            <a href="/extable" class="btn btn-primary shadow-sm">View Extra Category</a>
+                        </div>
+                        <form class="forms-sample" method="post" action="/exaddcategory">
+                            <div class="form-group">
+                                <label for="category">Select Category</label>
+                                <select name="category" class="form-control rounded">
+                                    <option>---Select Category---</option>
+                                    <% category.map((cat) => { %>
+                                        <option value="<%= cat.id %>"><%= cat.category %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="subcategory">Select Subcategory</label>
+                                <select name="subcategory" class="form-control rounded">
+                                    <option>---Select Subcategory---</option>
+                                    <% subcategory.map((sub) => { %>
+                                        <option value="<%= sub.id %>"><%= sub.subcategory %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="excategory">Extra Category Name</label>
+                                <input type="text" name="excategory" class="form-control rounded" placeholder="Enter Extra Category">
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary shadow-sm mr-2">Submit</button>
+                                <button type="reset" class="btn btn-secondary shadow-sm">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer') %>

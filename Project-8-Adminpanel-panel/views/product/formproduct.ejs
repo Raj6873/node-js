@@ -1,0 +1,83 @@
+<%- include('../header') %>
+
+<div class="main-panel" style="font-family: 'Poppins', sans-serif;">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow p-4 border-0 rounded">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="mb-0 text-primary">Add Product Category</h2>
+                        <a href="/tableproduct" class="btn btn-outline-primary">View Product Category</a>
+                    </div>
+                    
+                    <form method="post" action="/productadd" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label class="font-weight-bold">Category</label>
+                                <select name="category" class="form-control">
+                                    <option>---Select Category---</option>
+                                    <% category.map((cat)=> { %>
+                                    <option value="<%= cat.id %>"><%= cat.category %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label class="font-weight-bold">Subcategory</label>
+                                <select name="subcategory" class="form-control">
+                                    <option>---Select Subcategory---</option>
+                                    <% subcategory.map((sub)=> { %>
+                                    <option value="<%= sub.id %>"><%= sub.subcategory %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label class="font-weight-bold">Extra Category</label>
+                                <select name="excategory" class="form-control">
+                                    <option>---Select Extra Category---</option>
+                                    <% excategoroy.map((ex)=> { %>
+                                    <option value="<%= ex.id %>"><%= ex.excategory %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label class="font-weight-bold">Title</label>
+                                <input type="text" name="title" class="form-control" placeholder="Enter Title">
+                            </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label class="font-weight-bold">Price</label>
+                                <input type="text" name="price" class="form-control" placeholder="Enter Price">
+                            </div>
+                            
+                            <div class="form-group col-md-4">
+                                <label class="font-weight-bold">Quantity</label>
+                                <input type="text" name="qty" class="form-control" placeholder="Enter Quantity">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <label class="font-weight-bold">Description</label>
+                                <textarea class="form-control" name="description" placeholder="Enter Description" rows="5"></textarea>
+                            </div>
+                            
+                           
+                        </div>
+                        
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-light border">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer') %>

@@ -1,0 +1,120 @@
+<%- include('Header') %>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h1 class="page-title">Edit Admin</h1>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Admin</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <form method="POST" action="/EditAdminRecord" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <h4 class="card-title">Edit Admin Details</h4>
+
+                            <!-- First Name -->
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 col-form-label text-right">First Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter first name" value="<%= UpdataAdminData.name %>">
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="<%= UpdataAdminData.email %>">
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-3 col-form-label text-right">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" value="<%= UpdataAdminData.password %>">
+                                </div>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">Gender</label>
+                                <div class="col-sm-9">
+                                    <select name="gender" class="form-control">
+                                        <option value="Male" <%=UpdataAdminData.gender==='Male' ? 'selected' : '' %>>Male</option>
+                                        <option value="Female" <%=UpdataAdminData.gender==='Female' ? 'selected' : '' %>>Female</option>
+                                        <option value="Other" <%=UpdataAdminData.gender==='Other' ? 'selected' : '' %>>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Hobby -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">Hobby</label>
+                                <div class="col-sm-9">
+                                    <% const hobbies=Array.isArray(UpdataAdminData.hobby) ? UpdataAdminData.hobby : [UpdataAdminData.hobby]; %>
+                                    <% const hobbyOptions=['Riding', 'Cricket' , 'Sleeping' ]; %>
+                                    <% hobbyOptions.forEach((hobby, index)=> { const hobbyId = `hobby${index}`; %>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="<%= hobbyId %>" name="hobby" value="<%= hobby %>" <%=hobbies.includes(hobby) ? 'checked' : '' %>>
+                                            <label class="custom-control-label" for="<%= hobbyId %>"><%= hobby %></label>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                            </div>
+
+                            <!-- City -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">City</label>
+                                <div class="col-sm-9">
+                                    <% const cities=["Surat", "Vadodra", "Ahamdabad", "Rajkot"]; %>
+                                    <select name="city" class="form-control">
+                                        <option value="">Select City</option>
+                                        <% cities.forEach(city => { %>
+                                            <option value="<%= city %>" <%= UpdataAdminData.city === city ? 'selected' : '' %>><%= city %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Image Upload -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">Image</label>
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control-file" name="image">
+                                </div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="form-group row">
+                                <label for="message" class="col-sm-3 col-form-label text-right">Message</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Enter your message"><%= UpdataAdminData.masage %></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer text-right">
+                            <button type="submit" class="btn btn-success btn-lg">Update Admin</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('Footer') %>

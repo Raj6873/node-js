@@ -1,0 +1,131 @@
+<%-include('header')%>
+
+  <form action="/inserAdminRecords" method="post" enctype="multipart/form-data">
+    <div class="right_col" role="main">
+      <div class="">
+        <div class="page-title">
+          <div class="title_left">
+            <h3>Add Admin</h3>
+          </div>
+
+          <div class="title_right">
+            <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." />
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Add Admin</h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <br />
+                <form class="form-label-left input_mask">
+                  <div class="col-md-6 col-sm-6 form-group has-feedback">
+                    <input type="text" class="form-control has-feedback-left" id="inputSuccess2"
+                      placeholder="First Name" name="fname" />
+                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="col-md-6 col-sm-6 form-group has-feedback">
+                    <input type="text" class="form-control" id="inputSuccess3" placeholder="Last Name" name="lname" />
+                    <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="col-md-6 col-sm-6 form-group has-feedback">
+                    <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Email"
+                      name="email" />
+                    <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="col-md-6 col-sm-6 form-group has-feedback">
+                    <input type="tel" class="form-control" id="inputSuccess5" placeholder="Password" name="password" />
+                    <span class="fa fa-edit form-control-feedback right" aria-hidden="true"></span>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-form-label col-md-3 col-sm-3">Date Of Birth <span class="required">*</span>
+                    </label>
+                    <div class="col-md-12 col-sm-12">
+                      <input class="date-picker w-100 form-control" placeholder="dd-mm-yyyy" type="text"
+                        required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'"
+                        onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)"
+                        name="dob" />
+                      <script>
+                        function timeFunctionLong(input) {
+                          setTimeout(function () {
+                            input.type = "text";
+                          }, 60000);
+                        }
+                      </script>
+                    </div>
+                  </div>
+                  <label>Gender *:</label>
+                  <p>
+                    Male:
+                    <input type="radio" class="" id="genderM" value="Male" required name="gender" />
+                    <br />Female:
+                    <input type="radio" class="" name="gender" id="genderF" value="Female" />
+                  </p>
+
+                  <label>Hobbies *:</label>
+                  <p style="padding: 5px">
+
+
+                    <input type="checkbox" name="hobby" value="Reading" />&nbsp;Reading<br />
+                    <input type="checkbox" name="hobby" value="Cycling" />&nbsp;Cycling<br />
+                    <input type="checkbox" name="hobby" value="Travelling" />&nbsp;Travelling<br />
+                    <input type="checkbox" name="hobby" value="Music" />&nbsp;Music<br />
+                    <input type="checkbox" name="hobby" value="Running" />&nbsp;Running<br />
+                  </p>
+
+                  <p>
+                    <label for="heard">Choose-City *:</label>
+                    <select id="heard" class="form-control" name="city" required>
+                      <option value="">--Choose-City--</option>
+                      <%["Surat","Ahmdabad","Rajkot","Vadodra","Bhavnagar"].map((v,i)=>{%>
+                        <option value="<%=v%>">
+                          <%=v%>
+                        </option>
+                        <%})%>
+                    </select>
+                    <br />
+
+                    <label for="heard">Choose-File *:</label><br>
+                    <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage"
+                      class="text-white" style="background-color: #1ABB9C;" name="image" />
+                    <br /><br />
+
+                    <label for="message">Message (20 chars min, 100 max) :</label>
+                    <textarea id="message" required="required" class="form-control" name="message"
+                      data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100"
+                      data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                      data-parsley-validation-threshold="10"></textarea>
+                  </p>
+
+                  <p style="padding: 5px"></p>
+                  <div class="ln_solid"></div>
+                  <div class="form-group row">
+                    <div class="col-md-9 col-sm-9 offset-md-3 text-right">
+                      <button type="submit" class="btn btn-success">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <%-include('footer')%>

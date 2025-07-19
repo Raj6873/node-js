@@ -1,0 +1,35 @@
+<%- include('../header') %>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card shadow-lg rounded" style="font-family: 'Poppins', sans-serif;">
+                    <div class="card-body">
+                        <div class="title-box d-flex justify-content-between align-items-center pb-3 border-bottom">
+                            <h2 class="card-title mb-0 text-primary" style="font-size: 26px; font-weight: 600;">Update Category</h2>
+                            <div>
+                                <a href="/tablecategery" class="btn btn-outline-primary">
+                                    <i class="fa-solid fa-eye"></i> View Categories
+                                </a>
+                            </div>
+                        </div>
+                        <form class="forms-sample mt-4" method="post" action="/updatecategory">
+                            <input type="hidden" name="editid" value="<%= single.id %>">
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category Name</label>
+                                <input type="text" class="form-control shadow-sm" id="category" name="category" value="<%= single.category %>" required>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-success me-2 px-4">Update</button>
+                                <a href="/tablecategery" class="btn btn-secondary px-4">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer') %>

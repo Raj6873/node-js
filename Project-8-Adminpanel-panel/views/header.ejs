@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spica Admin</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller  d-flex">
+        <!-- partial:./partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background: #2C3E50; color: #ECF0F1;">
+            <ul class="nav">
+                <li class="nav-item sidebar-category" style="border-bottom: 1px solid #34495E;">
+                    <p style="color: #F39C12;">Navigation</p>
+                    <span></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashbord" style="color: #ECF0F1;">
+                        <i class="mdi mdi-view-quilt menu-icon" style="color: #F39C12;"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-category" style="border-bottom: 1px solid #34495E;">
+                    <p style="color: #F39C12;">Categories</p>
+                    <span></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/formcategory" style="color: #ECF0F1;">
+                        <i class="mdi mdi-view-headline menu-icon" style="color: #E74C3C;"></i>
+                        <span class="menu-title">Form</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tablecategery" style="color: #ECF0F1;">
+                        <i class="mdi mdi-grid-large menu-icon" style="color: #E74C3C;"></i>
+                        <span class="menu-title">Tables</span>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-category" style="border-bottom: 1px solid #34495E;">
+                    <p style="color: #F39C12;">Sub Categories</p>
+                    <span></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/formsub" style="color: #ECF0F1;">
+                        <i class="mdi mdi-view-headline menu-icon" style="color: #2ECC71;"></i>
+                        <span class="menu-title">Subcategory Form</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tablesub" style="color: #ECF0F1;">
+                        <i class="mdi mdi-grid-large menu-icon" style="color: #2ECC71;"></i>
+                        <span class="menu-title">Subcategory Tables</span>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-category" style="border-bottom: 1px solid #34495E;">
+                    <p style="color: #F39C12;">Extra Categories</p>
+                    <span></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/exform" style="color: #ECF0F1;">
+                        <i class="mdi mdi-view-headline menu-icon" style="color: #9B59B6;"></i>
+                        <span class="menu-title">ExtraSubcategory Form</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/extable" style="color: #ECF0F1;">
+                        <i class="mdi mdi-grid-large menu-icon" style="color: #9B59B6;"></i>
+                        <span class="menu-title">ExtraSubcategory Tables</span>
+                    </a>
+                </li>
+                <li class="nav-item sidebar-category" style="border-bottom: 1px solid #34495E;">
+                    <p style="color: #F39C12;">Product</p>
+                    <span></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/formproduct" style="color: #ECF0F1;">
+                        <i class="mdi mdi-view-headline menu-icon" style="color: #3498DB;"></i>
+                        <span class="menu-title">Product Form</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tableproduct" style="color: #ECF0F1;">
+                        <i class="mdi mdi-grid-large menu-icon" style="color: #3498DB;"></i>
+                        <span class="menu-title">Product Table</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper p-0">
+            <!-- partial:./partials/_navbar.html -->
+            <nav class="navbar col-lg-12 col-12 px-0 py-0  d-flex flex-row align-items-center" style="height: 65px" >
+                <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                        data-toggle="minimize">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                    <div class="navbar-brand-wrapper">
+                        <a class="navbar-brand brand-logo" href="index.html"><img src="images/logo.svg"
+                                alt="logo" /></a>
+                        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg"
+                                alt="logo" /></a>
+                    </div>
+                    <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1" style="font-size: 20px; font-family: Source Sans Pro;">Welcome back, Brandon Haynes</h4>
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item">
+                            <h4 class="mb-0 font-weight-bold d-none d-xl-block" style="font-size: 20px; font-family: Source Sans Pro;">Mar 12, 2019 - Apr 10, 2019</h4>
+                        </li>
+                        <li class="nav-item dropdown mr-1">
+                            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                                id="messageDropdown" href="#" data-toggle="dropdown">
+                                <i class="mdi mdi-calendar mx-0"></i>
+                              
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                aria-labelledby="messageDropdown">
+                                <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+                                    </div>
+                                    <div class="preview-item-content flex-grow">
+                                        <h6 class="preview-subject ellipsis font-weight-normal">David Grey
+                                        </h6>
+                                        <p class="font-weight-light small-text text-muted mb-0">
+                                            The meeting is cancelled
+                                        </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
+                                    </div>
+                                    <div class="preview-item-content flex-grow">
+                                        <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+                                        </h6>
+                                        <p class="font-weight-light small-text text-muted mb-0">
+                                            New product launch
+                                        </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
+                                    </div>
+                                    <div class="preview-item-content flex-grow">
+                                        <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+                                        </h6>
+                                        <p class="font-weight-light small-text text-muted mb-0">
+                                            Upcoming board meeting
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown mr-2">
+                            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center"
+                                id="notificationDropdown" href="#" data-toggle="dropdown">
+                                <i class="mdi mdi-email-open mx-0"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                aria-labelledby="notificationDropdown">
+                                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-success">
+                                            <i class="mdi mdi-information mx-0"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                                        <p class="font-weight-light small-text mb-0 text-muted">
+                                            Just now
+                                        </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-warning">
+                                            <i class="mdi mdi-settings mx-0"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject font-weight-normal">Settings</h6>
+                                        <p class="font-weight-light small-text mb-0 text-muted">
+                                            Private message
+                                        </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-info">
+                                            <i class="mdi mdi-account-box mx-0"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                                        <p class="font-weight-light small-text mb-0 text-muted">
+                                            2 days ago
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="preview-item-content">
+                        <a href="/logout" class="text-white p-2" style="border: 1px solid white;">Logout</a>
+                    </div>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                        data-toggle="offcanvas">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+                </div>
+            </nav>
+
+            

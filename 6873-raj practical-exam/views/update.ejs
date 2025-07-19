@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Inventory</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .form-container {
+      max-width: 650px;
+      margin: 60px auto;
+      padding: 40px;
+      border-radius: 16px;
+      background-color: #ffffff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+    }
+
+    .form-title {
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    label.form-label {
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+    }
+
+    textarea.form-control {
+      resize: none;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      background-color: #0d6efd;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      background-color: #0b5ed7;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <h2 class="form-title">Update Inventory</h2>
+    <form action="/insertProduct" method="post" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="InventoryName" class="form-label">Inventory Name</label>
+        <input type="text" class="form-control" id="InventoryName" name="productName" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="productPrice" class="form-label">Inventory Price</label>
+        <input type="number" class="form-control" name="InventoryPrice" id="productPrice" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="productCategory" class="form-label">Inventory Category</label>
+        <input type="text" class="form-control" name="InventoryCategory" id="productCategory" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="productDesc" class="form-label">Inventory Description</label>
+        <textarea class="form-control" name="InventoryDesc" id="productDesc" rows="4" required></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="productImage" class="form-label">Inventory Image</label>
+        <input type="file" class="form-control" name="InventoryImage" id="productImage" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</body>
+
+</html>

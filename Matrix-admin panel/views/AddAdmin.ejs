@@ -1,0 +1,137 @@
+<%- include('Header') %>
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Add Admin</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Admin</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg border-0 rounded">
+                    <form class="form-horizontal" method="POST" action="/insertAdminRecord" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4 text-primary font-weight-bold">Admin Information</h4>
+
+                            <!-- First Name -->
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 col-form-label text-right">First Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="fname" name="fname" class="form-control form-control-lg" placeholder="Enter first name" required>
+                                </div>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="form-group row">
+                                <label for="lname" class="col-sm-3 col-form-label text-right">Last Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="lname" name="lname" class="form-control form-control-lg" placeholder="Enter last name" required>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Enter email address" required>
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-3 col-form-label text-right">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required>
+                                </div>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">Gender</label>
+                                <div class="col-sm-9 d-flex align-items-center">
+                                    <div class="form-check mr-4">
+                                        <input class="form-check-input" type="radio" name="gender" id="genderMale" value="male" required>
+                                        <label class="form-check-label" for="genderMale">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="female">
+                                        <label class="form-check-label" for="genderFemale">Female</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hobbies -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">Hobbies</label>
+                                <div class="col-sm-9">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="hobby" id="hobbyRiding" value="Riding">
+                                        <label class="form-check-label" for="hobbyRiding">Riding</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="hobby" id="hobbyCricket" value="Cricket">
+                                        <label class="form-check-label" for="hobbyCricket">Cricket</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="hobby" id="hobbySleeping" value="Sleeping">
+                                        <label class="form-check-label" for="hobbySleeping">Sleeping</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- City Dropdown -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">City</label>
+                                <div class="col-sm-9">
+                                    <% var CityName = ["Surat", "Vadodara", "Ahmedabad", "Rajkot"]; %>
+                                    <select name="city" class="form-control form-control-lg" required>
+                                        <option value="">Select City</option>
+                                        <% CityName.map((city) => { %>
+                                            <option value="<%= city %>"><%= city %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Image Upload -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label text-right">Profile Image</label>
+                                <div class="col-sm-9">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="profileImage" name="image">
+                                        <label class="custom-file-label" for="profileImage">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="form-group row">
+                                <label for="message" class="col-sm-3 col-form-label text-right">Message</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control form-control-lg" name="message" id="message" rows="3" placeholder="Enter your message"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer text-right">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('Footer') %>

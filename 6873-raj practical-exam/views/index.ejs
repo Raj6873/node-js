@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventory Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .header {
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+    }
+
+    .card img {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .btn-custom {
+      display: inline-block;
+      padding: 8px 16px;
+      margin-right: 8px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-update {
+      background-color: #28a745;
+    }
+
+    .btn-update:hover {
+      background-color: #218838;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+    }
+
+    .btn-delete:hover {
+      background-color: #c82333;
+    }
+
+    .inventory-grid {
+      gap: 2rem;
+    }
+
+    .card-body p {
+      margin-bottom: 0.4rem;
+      color: #555;
+    }
+
+    .card-body .btn-group {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+  
+    <div class="row justify-content-center inventory-grid">
+      <% records.map((data) => { %>
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
+          <div class="card w-100">
+            <img src="<%= data.InventoryImage %>" alt="Inventory Image" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title"><%= data.InventoryName %></h5>
+              <p><strong>Price:</strong> $<%= data.InventoryPrice %></p>
+              <p><strong>Category:</strong> <%= data.InventoryCategory %></p>
+              <p><strong>Description:</strong> <%= data.InventoryDesc %></p>
+              <div class="btn-group">
+                <a href="/edit?id=<%= data._id %>" class="btn-custom btn-update">Update</a>
+                <a href="/delete?id=<%= data._id %>" class="btn-custom btn-delete">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+<br>
+<div class="text-center header">
+  <a href="/formPage" class="btn btn-primary mb-4">+ Add New Inventory</a>
+</div>
