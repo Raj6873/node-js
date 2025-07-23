@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
-const URI = "mongodb://localhost:27017/Movie-And-Rating-pr"
 
-mongoose.connect(URI);
+mongoose.connect(process.env.db_url);
 
 const db = mongoose.connection;
 

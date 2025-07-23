@@ -45,8 +45,8 @@ const Adminlogin = async (req, res) => {
         }
 
         const token = JWT.sign(
-            { id: currentUser._id, email: currentUser.email },
-            process.env.secret,
+            {currentUser: currentUser},
+            process.env.JWT_Secret,
             { expiresIn: "1h" }
         );
 
