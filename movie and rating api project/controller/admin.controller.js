@@ -1,8 +1,9 @@
-const adminModel = require("../models/adminModel");
+const adminModel = require("../models/admin.Model");
 const JWT = require("jsonwebtoken")
 const bcrypt = require("bcrypt");
 const moment = require("moment");
 
+// AdminRegister
 const AdminRegister = async (req, res) => {
     try {
         console.log(req.body)
@@ -29,7 +30,7 @@ const AdminRegister = async (req, res) => {
         res.status(400).json({ error: "semothing went wrong" })
     }
 }
-
+// Adminlogin
 const Adminlogin = async (req, res) => {
     try {
         console.log(req.body)
@@ -64,7 +65,7 @@ const Adminlogin = async (req, res) => {
         res.status(400).json({ error: "Something went wrong.", err });
     }
 };
-
+// fetchadminall
 const fetchadminall = async (req, res) => {
     try {
         const alladmin = await adminModel.find({});
@@ -88,7 +89,7 @@ const fetchadminall = async (req, res) => {
     }
 };
 
-
+// admindelet
 const admindelet = async (req, res) => {
     try {
         const deletedata = await adminModel.findByIdAndDelete(req.body.id);

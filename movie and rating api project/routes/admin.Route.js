@@ -2,13 +2,13 @@ const express = require("express");
 
 const route = express.Router();
 
-const upload = require('../middlware/adminMulter');
-const adminAuth = require("../middlware/adminAuth");
+const upload = require("../middlware/admin.Multer");
+const adminAuth = require("../middlware/admin.Auth");
 ;
 
 console.log("admin routing is called...");
 
-const { AdminRegister,Adminlogin,fetchadminall,admindelet} = require("../controller/admincontroller")
+const { AdminRegister,Adminlogin,fetchadminall,admindelet} = require("../controller/admin.controller")
 
 route.post("/register",upload.single('image'),AdminRegister)
 
