@@ -1,37 +1,39 @@
-const admin = require("../models/admin.Model");
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken");
-const auth = require("../middleware/auth.middleware");
+const adminModel = require("../models/adminModel");
+const JWT = require("jsonwebtoken")
+const bcrypt = require("bcrypt");
+const moment = require("moment");
 
-exports.adminregister = async (req, res) => {
+const AdminRegister = async (req, res) => {
     try {
         console.log(req.body)
-        const data = await admin.findOne({ email: req.body.email });
+        const data = await adminModel.findOne({ email: req.body.email });
 
         console.log(data);
-        
+
         if (data) {
-        
-          return  res.status(401).json({ status: false, error: "Email is Allreday exits...?" });
+            return res.status(401).json({ status: false, error: "Email is Allreday exits...?" });
         }
         req.body.password = await bcrypt.hash(req.body.password, 11);
 
-        (await admin.create(req.body))
-            ? res.status(201).json({ status: true, success: "Username is register successfully.....?" })
-            : res.status(401).json({ status: false, error: "user register in failed...?" })
+        req.body.image = req.file.path;
+
+        req.body.status = true;
+        const newdata = (await adminModel.create(req.body))
+        if (newdata) {
+            res.status(201).json({ status: true, success: "Username is register successfully.....?" })
+        }
+        else {
+            res.status(401).json({ status: false, error: "user register in failed...?" })
+        }
     } catch (err) {
-        res.status(400).json({
-            status: false,
-            error: "semothing went wrong",
-            error_data: err,
-        })
+        res.status(400).json({ error: "semothing went wrong" })
     }
 }
 
-
-exports.loginadmin = async (req, res) => {
+const Adminlogin = async (req, res) => {
     try {
-        const currentUser = await admin.findOne({ email: req.body.email });
+        console.log(req.body)
+        const currentUser = await adminModel.findOne({ email: req.body.email });
 
         if (!currentUser) {
             return res.status(404).json({ status: false, error: "User not found." });
@@ -42,7 +44,7 @@ exports.loginadmin = async (req, res) => {
             return res.status(401).json({ status: false, error: "Incorrect password." });
         }
 
-        const token = jwt.sign(
+        const token = JWT.sign(
             { id: currentUser._id, email: currentUser.email },
             process.env.secret,
             { expiresIn: "1h" }
@@ -50,7 +52,7 @@ exports.loginadmin = async (req, res) => {
 
         res.status(200).json({
             status: true,
-            message: "Login successful.",
+            message: "Admin Login successfully...?.",
             user: {
                 id: currentUser._id,
                 email: currentUser.email,
@@ -59,17 +61,13 @@ exports.loginadmin = async (req, res) => {
         });
 
     } catch (err) {
-        res.status(500).json({
-            status: false,
-            error: "Something went wrong.",
-            error_data: err.message,
-        });
+        res.status(400).json({ error: "Something went wrong.", err });
     }
 };
 
-exports.alladmindata = async (req, res) => {
+const fetchadminall = async (req, res) => {
     try {
-        const alladmin = await admin.find({});
+        const alladmin = await adminModel.find({});
 
         if (alladmin) {
             res.status(200).json({
@@ -84,18 +82,16 @@ exports.alladmindata = async (req, res) => {
             });
         }
     } catch (err) {
-        res.status(500).json({
-            status: false,
-            error: "Something went wrong.",
-            error_data: err.message,
+        res.status(400).json({
+            status: false, error: "Something went wrong.",
         });
     }
 };
 
 
-exports.deleteadmin = async (req, res) => {
+const admindelet = async (req, res) => {
     try {
-        const deletedata = await admin.findByIdAndDelete(req.body.id);
+        const deletedata = await adminModel.findByIdAndDelete(req.body.id);
 
         if (deletedata) {
             res.status(200).json({
@@ -117,3 +113,10 @@ exports.deleteadmin = async (req, res) => {
         });
     }
 };
+
+module.exports = {
+    AdminRegister,
+    Adminlogin,
+    fetchadminall,
+    admindelet
+}
