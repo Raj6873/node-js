@@ -5,9 +5,7 @@ const moment = require("moment");
 
 // AdminRegister
 const addmovie = async (req, res) => {
-    console.log('====================================');
     console.log(req.body);
-    console.log('====================================');
 }
 
 
