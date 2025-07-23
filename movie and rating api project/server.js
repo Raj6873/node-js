@@ -13,6 +13,8 @@ app.use("/api/admin",require("./routes/admin.Route"));
 
 app.use('/api/movies', require("./routes/movie.Route"));
 
+app.use('/api/movies', require("./routes/rating.Route"));
+
 app.listen(process.env.PORT,(err)  =>{
     if(err){
         console.log("server is not connected....?")
