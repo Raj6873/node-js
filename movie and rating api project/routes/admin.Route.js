@@ -8,14 +8,14 @@ const adminAuth = require("../middlware/admin.Auth");
 
 console.log("admin routing is called...");
 
-const { AdminRegister,Adminlogin,fetchadminall,admindelet} = require("../controller/admin.controller")
+const { AdminRegister, Adminlogin, fetchadminall, admindelet } = require("../controller/admin.controller")
 
-route.post("/register",upload.single('image'),AdminRegister)
+route.post("/register", upload.single('image'), AdminRegister)
 
-route.post("/login",Adminlogin)
+route.post("/login", Adminlogin)
 
-route.get("/fetchall",fetchadminall)
+route.get("/fetchall",  fetchadminall)
 
-route.delete("/deletadmin",admindelet)
+route.delete("/deletadmin", admindelet)
 
 module.exports = route;
