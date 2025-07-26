@@ -21,11 +21,10 @@ const addRating = async (req, res) => {
     }
 };
 
-
 // Fetch all ratings
 const fetchRatingsByMovie = async (req, res) => {
     try {
-        const ratings = await ratingModel.find();
+        const ratings = await movieModel.find();
         res.status(200).json({ status: true, ratings, message: "Ratings fetched successfully." });
     } catch (err) {
         res.status(400).json({ status: false, error: err.message , message: "Failed to fetch ratings." });
